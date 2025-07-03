@@ -1,10 +1,10 @@
-// Dark/Light Mode Toggle
+// Dark/Light Mode Toggle (Diubah agar sesuai latar putih)
 document.getElementById('modeToggle').addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
-    document.querySelector('header').classList.toggle('light-mode');
-    document.querySelector('nav').classList.toggle('light-mode');
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('header').classList.toggle('dark-mode');
+    document.querySelector('nav').classList.toggle('dark-mode');
     const navButtons = document.querySelectorAll('.nav-btn');
-    navButtons.forEach(btn => btn.classList.toggle('light-mode'));
+    navButtons.forEach(btn => btn.classList.toggle('dark-mode'));
 });
 
 // Navigation
@@ -28,7 +28,7 @@ function calculateAge() {
 // BMI Calculator
 function calculateBMI() {
     const weight = document.getElementById('weight').value;
-    const height = document.getElementById('height').value / 100; // Convert cm to m
+    const height = document.getElementById('height').value / 100;
     if (weight && height) {
         const bmi = weight / (height * height);
         document.getElementById('bmiResult').innerText = `BMI Anda: ${bmi.toFixed(2)}`;
@@ -90,7 +90,7 @@ function convertText(caseType) {
     document.getElementById('textResult').innerText = result;
 }
 
-// Currency Converter (Sederhana, static rate)
+// Currency Converter
 function convertCurrency() {
     const amount = parseFloat(document.getElementById('amount').value) || 0;
     const from = document.getElementById('fromCurrency').value;
