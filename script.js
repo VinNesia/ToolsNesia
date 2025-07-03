@@ -214,67 +214,11 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoading();
     }
 
-    let galleryItems = JSON.parse(localStorage.getItem('gallery') || '[]');
-    function saveToGallery(type, content) {
-        const item = { type, content, timestamp: new Date().toLocaleString() };
-        galleryItems.push(item);
-        localStorage.setItem('gallery', JSON.stringify(galleryItems));
-        updateGallery();
-        alert('Item disimpan ke galeri!');
-    }
-
-    function updateGallery() {
-        const galleryContent = document.querySelector('#gallery .gallery-content');
-        if (galleryContent) {
-            galleryContent.innerHTML = '';
-            galleryItems.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = 'gallery-item';
-                div.innerHTML = `<p>${item.content} (${item.timestamp})</p><button onclick="deleteGallery(${index})">Hapus</button>`;
-                galleryContent.appendChild(div);
-            });
-        }
-    }
-
-    function deleteGallery(index) {
-        if (confirm('Yakin hapus item ini?')) {
-            galleryItems.splice(index, 1);
-            localStorage.setItem('gallery', JSON.stringify(galleryItems));
-            updateGallery();
-        }
-    }
-
-    let history = JSON.parse(localStorage.getItem('history') || '{}');
-    function saveHistory(tool, result) {
-        history[tool] = { result, timestamp: new Date().toLocaleString() };
-        localStorage.setItem('history', JSON.stringify(history));
-        updateHistory();
-    }
-
-    function updateHistory() {
-        const historyContent = document.getElementById('historyContent');
-        if (historyContent) {
-            historyContent.innerHTML = '';
-            for (let tool in history) {
-                const div = document.createElement('div');
-                div.innerHTML = `<p>${tool}: ${history[tool].result} (${history[tool].timestamp})</p>`;
-                historyContent.appendChild(div);
-            }
-        }
-    }
-
     function saveSettings() {
         const darkMode = document.getElementById('darkModePref')?.checked;
-        const language = document.getElementById('language')?.value || 'id';
         if (darkMode !== undefined) {
             document.body.classList.toggle('dark-mode', darkMode);
             localStorage.setItem('darkMode', darkMode);
         }
-        localStorage.setItem('language', language);
-        // Tambah logika update teks berdasarkan bahasa jika perlu
     }
-
-    // Panggil update awal
-    updateGallery();
-    updateHistory();
 });
