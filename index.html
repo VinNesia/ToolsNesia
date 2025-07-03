@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Secz Tools</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -28,13 +28,13 @@
         </div>
         <div class="tool-content" id="age-bmi" style="display:none;">
             <h2>Kalkulator Umur & BMI</h2>
-            <div>
+            <div class="input-group">
                 <label>Usia: Masukkan Tanggal Lahir</label>
                 <input type="date" id="birthdate">
                 <button onclick="calculateAge()">Hitung Usia</button>
                 <p id="ageResult"></p>
             </div>
-            <div>
+            <div class="input-group">
                 <label>Berat (kg):</label>
                 <input type="number" id="weight">
                 <label>Tinggi (cm):</label>
@@ -45,44 +45,54 @@
         </div>
         <div class="tool-content" id="qrcode" style="display:none;">
             <h2>QR Code Generator</h2>
-            <input type="text" id="qrInput" placeholder="Masukkan URL atau Teks">
-            <button onclick="generateQR()">Buat QR</button>
-            <div id="qrCode"></div>
+            <div class="input-group">
+                <input type="text" id="qrInput" placeholder="Masukkan URL atau Teks">
+                <button onclick="generateQR()">Buat QR</button>
+                <div id="qrCode"></div>
+            </div>
         </div>
         <div class="tool-content" id="password" style="display:none;">
             <h2>Password Generator</h2>
-            <button onclick="generatePassword()">Buat Password</button>
-            <p id="passwordResult"></p>
+            <div class="input-group">
+                <button onclick="generatePassword()">Buat Password</button>
+                <p id="passwordResult"></p>
+            </div>
         </div>
         <div class="tool-content" id="timer" style="display:none;">
             <h2>Countdown Timer</h2>
-            <input type="number" id="hours" placeholder="Jam" min="0">
-            <input type="number" id="minutes" placeholder="Menit" min="0">
-            <input type="number" id="seconds" placeholder="Detik" min="0">
-            <button onclick="startTimer()">Mulai</button>
-            <p id="timerDisplay"></p>
+            <div class="input-group">
+                <input type="number" id="hours" placeholder="Jam" min="0">
+                <input type="number" id="minutes" placeholder="Menit" min="0">
+                <input type="number" id="seconds" placeholder="Detik" min="0">
+                <button onclick="startTimer()">Mulai</button>
+                <p id="timerDisplay"></p>
+            </div>
         </div>
         <div class="tool-content" id="textcase" style="display:none;">
             <h2>Text Case Converter</h2>
-            <textarea id="textInput" placeholder="Masukkan teks"></textarea>
-            <button onclick="convertText('upper')">Huruf Besar</button>
-            <button onclick="convertText('lower')">Huruf Kecil</button>
-            <button onclick="convertText('capitalize')">Kata Besar</button>
-            <p id="textResult"></p>
+            <div class="input-group">
+                <textarea id="textInput" placeholder="Masukkan teks"></textarea>
+                <button onclick="convertText('upper')">Huruf Besar</button>
+                <button onclick="convertText('lower')">Huruf Kecil</button>
+                <button onclick="convertText('capitalize')">Kata Besar</button>
+                <p id="textResult"></p>
+            </div>
         </div>
         <div class="tool-content" id="currency" style="display:none;">
             <h2>Currency Converter</h2>
-            <input type="number" id="amount" placeholder="Jumlah">
-            <select id="fromCurrency">
-                <option value="USD">USD</option>
-                <option value="IDR">IDR</option>
-            </select>
-            <select id="toCurrency">
-                <option value="IDR">IDR</option>
-                <option value="USD">USD</option>
-            </select>
-            <button onclick="convertCurrency()">Konversi</button>
-            <p id="currencyResult"></p>
+            <div class="input-group">
+                <input type="number" id="amount" placeholder="Jumlah">
+                <select id="fromCurrency">
+                    <option value="USD">USD</option>
+                    <option value="IDR">IDR</option>
+                </select>
+                <select id="toCurrency">
+                    <option value="IDR">IDR</option>
+                    <option value="USD">USD</option>
+                </select>
+                <button onclick="convertCurrency()">Konversi</button>
+                <p id="currencyResult"></p>
+            </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
