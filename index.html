@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secz Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Secz Tools Logo" class="logo">
+        <h1>Secz Tools</h1>
+        <button id="modeToggle">Toggle Light/Dark</button>
+    </header>
+    <nav>
+        <button class="nav-btn" data-tool="age-bmi">Kalkulator</button>
+        <button class="nav-btn" data-tool="qrcode">QR Code</button>
+        <button class="nav-btn" data-tool="password">Password</button>
+        <button class="nav-btn" data-tool="timer">Timer</button>
+        <button class="nav-btn" data-tool="textcase">Text Converter</button>
+        <!-- Currency Converter opsional -->
+        <button class="nav-btn" data-tool="currency">Currency Converter</button>
+    </nav>
+    <main id="toolArea">
+        <!-- Default content -->
+        <div class="tool-content" id="default">
+            <h2>Selamat datang di Secz Tools!</h2>
+            <p>Pilih tools di atas untuk memulai.</p>
+        </div>
+        <!-- Age/BMI Calculator -->
+        <div class="tool-content" id="age-bmi" style="display:none;">
+            <h2>Kalkulator Umur & BMI</h2>
+            <div>
+                <label>Usia: Masukkan Tanggal Lahir</label>
+                <input type="date" id="birthdate">
+                <button onclick="calculateAge()">Hitung Usia</button>
+                <p id="ageResult"></p>
+            </div>
+            <div>
+                <label>Berat (kg):</label>
+                <input type="number" id="weight">
+                <label>Tinggi (cm):</label>
+                <input type="number" id="height">
+                <button onclick="calculateBMI()">Hitung BMI</button>
+                <p id="bmiResult"></p>
+            </div>
+        </div>
+        <!-- QR Code Generator -->
+        <div class="tool-content" id="qrcode" style="display:none;">
+            <h2>QR Code Generator</h2>
+            <input type="text" id="qrInput" placeholder="Masukkan URL atau Teks">
+            <button onclick="generateQR()">Buat QR</button>
+            <div id="qrCode"></div>
+        </div>
+        <!-- Password Generator -->
+        <div class="tool-content" id="password" style="display:none;">
+            <h2>Password Generator</h2>
+            <button onclick="generatePassword()">Buat Password</button>
+            <p id="passwordResult"></p>
+        </div>
+        <!-- Countdown Timer -->
+        <div class="tool-content" id="timer" style="display:none;">
+            <h2>Countdown Timer</h2>
+            <input type="number" id="hours" placeholder="Jam" min="0">
+            <input type="number" id="minutes" placeholder="Menit" min="0">
+            <input type="number" id="seconds" placeholder="Detik" min="0">
+            <button onclick="startTimer()">Mulai</button>
+            <p id="timerDisplay"></p>
+        </div>
+        <!-- Text Case Converter -->
+        <div class="tool-content" id="textcase" style="display:none;">
+            <h2>Text Case Converter</h2>
+            <textarea id="textInput" placeholder="Masukkan teks"></textarea>
+            <button onclick="convertText('upper')">Huruf Besar</button>
+            <button onclick="convertText('lower')">Huruf Kecil</button>
+            <button onclick="convertText('capitalize')">Kata Besar</button>
+            <p id="textResult"></p>
+        </div>
+        <!-- Currency Converter (Sederhana) -->
+        <div class="tool-content" id="currency" style="display:none;">
+            <h2>Currency Converter</h2>
+            <input type="number" id="amount" placeholder="Jumlah">
+            <select id="fromCurrency">
+                <option value="USD">USD</option>
+                <option value="IDR">IDR</option>
+            </select>
+            <select id="toCurrency">
+                <option value="IDR">IDR</option>
+                <option value="USD">USD</option>
+            </select>
+            <button onclick="convertCurrency()">Konversi</button>
+            <p id="currencyResult"></p>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
