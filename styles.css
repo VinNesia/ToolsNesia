@@ -203,19 +203,6 @@ header {
     color: #e0e0e0;
 }
 
-.gallery-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.gallery-item {
-    background: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
 footer {
     text-align: center;
     padding: 10px;
