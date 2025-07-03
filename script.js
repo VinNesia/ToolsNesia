@@ -5,6 +5,11 @@ document.getElementById('themeToggle').addEventListener('click', () => {
     inputs.forEach(input => {
         input.style.background = document.body.classList.contains('dark-mode') ? '#333' : '#ffffff';
         input.style.color = document.body.classList.contains('dark-mode') ? '#e0e0e0' : '#000000';
+        input.style.borderColor = document.body.classList.contains('dark-mode') ? '#555' : '#ccc';
+    });
+    const labels = document.querySelectorAll('label');
+    labels.forEach(label => {
+        label.style.color = document.body.classList.contains('dark-mode') ? '#e0e0e0' : '#333';
     });
 });
 
@@ -12,14 +17,29 @@ document.getElementById('themeToggle').addEventListener('click', () => {
 document.querySelectorAll('.nav-btn').forEach(button => {
     button.addEventListener('click', () => {
         document.querySelectorAll('.tool-content').forEach(content => content.style.display = 'none');
-        document.getElementById(button.dataset.tool).style.display = 'block';
+        const target = document.getElementById(button.dataset.tool);
+        target.style.display = 'block';
+        setTimeout(() => target.classList.add('active'), 10); // Delay untuk animasi
     });
+});
+
+// Contact Icon
+document.querySelector('.contact-icon').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelectorAll('.tool-content').forEach(content => content.style.display = 'none');
+    const target = document.getElementById('contact');
+    target.style.display = 'block';
+    setTimeout(() => target.classList.add('active'), 10);
 });
 
 // Back to Default
 function goToDefault() {
-    document.querySelectorAll('.tool-content').forEach(content => content.style.display = 'none');
+    document.querySelectorAll('.tool-content').forEach(content => {
+        content.style.display = 'none';
+        content.classList.remove('active');
+    });
     document.getElementById('default').style.display = 'block';
+    setTimeout(() => document.getElementById('default').classList.add('active'), 10);
 }
 
 // Age Calculator with Validation
@@ -28,6 +48,7 @@ function calculateAge() {
     const ageError = document.getElementById('ageError');
     if (!birthdate) {
         ageError.innerText = 'Silakan pilih tanggal lahir!';
+        document.getElementById('birthdate').focus();
         return;
     }
     const today = new Date();
@@ -46,6 +67,8 @@ function calculateBMI() {
     const bmiError = document.getElementById('bmiError');
     if (!weight || !height || weight <= 0 || height <= 0) {
         bmiError.innerText = 'Masukkan berat dan tinggi yang valid (lebih dari 0)!';
+        if (!weight) document.getElementById('weight').focus();
+        else document.getElementById('height').focus();
         return;
     }
     const bmi = weight / ((height / 100) * (height / 100));
@@ -53,13 +76,14 @@ function calculateBMI() {
     document.getElementById('bmiResult').innerText = `BMI Anda: ${bmi.toFixed(2)}`;
 }
 
-// QR Code Generator with Loading
+// QR Code Generator with Loading and Reset
 function generateQR() {
     const qrInput = document.getElementById('qrInput').value;
     const qrSpinner = document.getElementById('qrSpinner');
     const qrError = document.getElementById('qrError');
     if (!qrInput) {
         qrError.innerText = 'Masukkan teks atau URL!';
+        document.getElementById('qrInput').focus();
         return;
     }
     qrError.innerText = '';
@@ -96,6 +120,9 @@ function startTimer() {
     const timerSpinner = document.getElementById('timerSpinner');
     if (hours < 0 || minutes < 0 || seconds < 0) {
         timerError.innerText = 'Masukkan nilai yang valid (tidak negatif)!';
+        if (hours < 0) document.getElementById('hours').focus();
+        else if (minutes < 0) document.getElementById('minutes').focus();
+        else document.getElementById('seconds').focus();
         return;
     }
     timerError.innerText = '';
@@ -127,6 +154,7 @@ function convertText(caseType) {
     const spinner = document.getElementById(spinnerId);
     if (!text) {
         textError.innerText = 'Masukkan teks terlebih dahulu!';
+        document.getElementById('textInput').focus();
         return;
     }
     textError.innerText = '';
@@ -154,6 +182,7 @@ function convertCurrency() {
     const currencySpinner = document.getElementById('currencySpinner');
     if (amount < 0) {
         currencyError.innerText = 'Masukkan jumlah yang valid (tidak negatif)!';
+        document.getElementById('amount').focus();
         return;
     }
     currencyError.innerText = '';
@@ -165,3 +194,47 @@ function convertCurrency() {
         currencySpinner.style.display = 'none';
     }, 500); // Simulasi delay
 }
+
+// Chat Box
+document.querySelector('.chat-toggle').addEventListener('click', () => {
+    document.querySelector('.chat-box').classList.toggle('active');
+});
+
+document.querySelector('.chat-send').addEventListener('click', () => {
+    const input = document.querySelector('.chat-input');
+    const message = input.value.toLowerCase().trim();
+    const chatMessages = document.querySelector('.chat-messages');
+    if (message) {
+        chatMessages.innerHTML += `<p><strong>Kamu:</strong> ${message}</p>`;
+        if (message === 'bantuan') {
+            chatMessages.innerHTML += `<p><strong>Bot:</strong> Silakan cek halaman <a href="#" data-tool="help">Bantuan</a> untuk panduan lengkap!</p>`;
+        } else if (message === 'kontak') {
+            chatMessages.innerHTML += `<p><strong>Bot:</strong> Hubungi kami di <a href="mailto:vin.nesia.id@gmail.com">email</a> atau <a href="https://wa.me/62895354511777" target="_blank">WhatsApp</a> untuk bantuan lebih lanjut.</p>`;
+        } else if (message.includes('penting')) {
+            chatMessages.innerHTML += `<p><strong>Bot:</strong> Ini tampaknya penting! Silakan hubungi kami di <a href="https://wa.me/62895354511777" target="_blank">WhatsApp</a> atau <a href="mailto:vin.nesia.id@gmail.com">email</a>.</p>`;
+        } else {
+            chatMessages.innerHTML += `<p><strong>Bot:</strong> Maaf, saya tidak mengerti. Ketik "bantuan" atau "kontak" untuk opsi lebih lanjut.</p>`;
+        }
+        input.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+});
+
+document.querySelector('.chat-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        document.querySelector('.chat-send').click();
+    }
+});
+
+// Formulir Kontak dengan EmailJS
+document.querySelector('#contact form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    emailjs.sendForm('service_zrumu1h', 'template_b3ayww4', form)
+        .then((result) => {
+            alert('Pesan berhasil dikirim!');
+            form.reset();
+        }, (error) => {
+            alert('Gagal mengirim pesan: ' + error.text);
+        });
+});
