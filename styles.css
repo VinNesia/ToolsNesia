@@ -1,0 +1,107 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #1a1a1a;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+body.light-mode {
+    background: #f0f0f0;
+    color: #333;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: #2a2a2a;
+}
+
+header.light-mode {
+    background: #fff;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#modeToggle {
+    margin-left: auto;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: #333;
+}
+
+nav.light-mode {
+    background: #ddd;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    border: none;
+    background: #444;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background: #555;
+}
+
+.nav-btn.light-mode {
+    background: #bbb;
+}
+
+.nav-btn.light-mode:hover {
+    background: #aaa;
+}
+
+main {
+    padding: 20px;
+}
+
+.tool-content {
+    display: none;
+}
+
+.tool-content.active {
+    display: block;
+}
+
+input, button, textarea {
+    margin: 5px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+button {
+    background: #ff9900;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e68a00;
+}
+
+#qrCode {
+    margin-top: 10px;
+}
