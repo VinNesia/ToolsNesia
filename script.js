@@ -1,16 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.querySelector('.theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-        });
-    }
-
-    if (localStorage.getItem('darkMode') === 'true') {
-        document.body.classList.add('dark-mode');
-    }
-
     document.querySelectorAll('.tool-item, .nav-btn').forEach(button => {
         button.addEventListener('click', () => {
             const tool = button.dataset.tool;
@@ -212,13 +200,5 @@ document.addEventListener('DOMContentLoaded', () => {
         if (bmiError) bmiError.innerText = '';
         if (bmiResult) bmiResult.innerText = `BMI: ${bmi.toFixed(2)}`;
         hideLoading();
-    }
-
-    function saveSettings() {
-        const darkMode = document.getElementById('darkModePref')?.checked;
-        if (darkMode !== undefined) {
-            document.body.classList.toggle('dark-mode', darkMode);
-            localStorage.setItem('darkMode', darkMode);
-        }
     }
 });
