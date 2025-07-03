@@ -1,4 +1,4 @@
-// Theme Toggle and Persistence
+// Theme Toggle
 document.getElementById('themeToggle').addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     const inputs = document.querySelectorAll('input, select, textarea');
@@ -19,14 +19,11 @@ window.onload = () => {
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark-mode');
     }
-    updateLanguage();
-    generateCaptcha();
 };
 
 // Navigation
 document.querySelectorAll('.nav-btn, .nav-subbtn, .tool-item').forEach(button => {
     button.addEventListener('click', () => {
-        logUsage(button.dataset.tool);
         document.querySelectorAll('.tool-content').forEach(content => content.style.display = 'none');
         const target = document.getElementById(button.dataset.tool);
         target.style.display = 'block';
@@ -37,7 +34,6 @@ document.querySelectorAll('.nav-btn, .nav-subbtn, .tool-item').forEach(button =>
 // Contact Icon
 document.querySelector('.contact-icon').addEventListener('click', (e) => {
     e.preventDefault();
-    logUsage('contact');
     document.querySelectorAll('.tool-content').forEach(content => content.style.display = 'none');
     const target = document.getElementById('contact');
     target.style.display = 'block';
@@ -54,23 +50,13 @@ function goToDefault() {
     setTimeout(() => document.getElementById('home').classList.add('active'), 10);
 }
 
-// Usage Logging
-function logUsage(tool) {
-    const usage = JSON.parse(localStorage.getItem('usage') || '{}');
-    usage[tool] = (usage[tool] || 0) + 1;
-    localStorage.setItem('usage', JSON.stringify(usage));
-    console.log(`Tool ${tool} digunakan ${usage[tool]} kali.`);
-}
-
 // Age Calculator with Validation
 function calculateAge() {
-    document.getElementById('loading').style.display = 'block';
     const birthdate = document.getElementById('birthdate').value;
     const ageError = document.getElementById('ageError');
     if (!birthdate) {
         ageError.innerText = 'Silakan pilih tanggal lahir!';
         document.getElementById('birthdate').focus();
-        document.getElementById('loading').style.display = 'none';
         return;
     }
     const today = new Date();
@@ -80,12 +66,10 @@ function calculateAge() {
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) age--;
     ageError.innerText = '';
     document.getElementById('ageResult').innerText = `Usia Anda: ${age} tahun`;
-    document.getElementById('loading').style.display = 'none';
 }
 
 // BMI Calculator with Validation
 function calculateBMI() {
-    document.getElementById('loading').style.display = 'block';
     const weight = document.getElementById('weight').value;
     const height = document.getElementById('height').value;
     const bmiError = document.getElementById('bmiError');
@@ -93,18 +77,15 @@ function calculateBMI() {
         bmiError.innerText = 'Masukkan berat dan tinggi yang valid (lebih dari 0)!';
         if (!weight) document.getElementById('weight').focus();
         else document.getElementById('height').focus();
-        document.getElementById('loading').style.display = 'none';
         return;
     }
     const bmi = weight / ((height / 100) * (height / 100));
     bmiError.innerText = '';
     document.getElementById('bmiResult').innerText = `BMI Anda: ${bmi.toFixed(2)}`;
-    document.getElementById('loading').style.display = 'none';
 }
 
 // QR Code Generator with Download
 function generateQR() {
-    document.getElementById('loading').style.display = 'block';
     const qrInput = document.getElementById('qrInput').value;
     const qrSpinner = document.getElementById('qrSpinner');
     const qrError = document.getElementById('qrError');
@@ -114,7 +95,6 @@ function generateQR() {
     if (!qrInput) {
         qrError.innerText = 'Masukkan teks atau URL!';
         document.getElementById('qrInput').focus();
-        document.getElementById('loading').style.display = 'none';
         return;
     }
     qrError.innerText = '';
@@ -122,7 +102,6 @@ function generateQR() {
     if (!qrContainer) {
         qrError.innerText = 'Elemen QRCode tidak ditemukan!';
         qrSpinner.style.display = 'none';
-        document.getElementById('loading').style.display = 'none';
         return;
     }
     qrContainer.innerHTML = '';
@@ -151,12 +130,10 @@ function generateQR() {
         qrSpinner.style.display = 'none';
         console.error(error);
     }
-    document.getElementById('loading').style.display = 'none';
 }
 
 // Password Generator
 function generatePassword() {
-    document.getElementById('loading').style.display = 'block';
     const passSpinner = document.getElementById('passSpinner');
     passSpinner.style.display = 'inline-block';
     const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
@@ -166,13 +143,11 @@ function generatePassword() {
     }
     document.getElementById('passwordResult').innerText = `Password: ${password}`;
     passSpinner.style.display = 'none';
-    document.getElementById('loading').style.display = 'none';
 }
 
-// Countdown Timer with Notification
+// Countdown Timer with Validation
 let timerInterval;
 function startTimer() {
-    document.getElementById('loading').style.display = 'block';
     const hours = parseInt(document.getElementById('hours').value) || 0;
     const minutes = parseInt(document.getElementById('minutes').value) || 0;
     const seconds = parseInt(document.getElementById('seconds').value) || 0;
@@ -183,7 +158,6 @@ function startTimer() {
         if (hours < 0 || hours > 99) document.getElementById('hours').focus();
         else if (minutes < 0 || minutes > 59) document.getElementById('minutes').focus();
         else document.getElementById('seconds').focus();
-        document.getElementById('loading').style.display = 'none';
         return;
     }
     timerError.innerText = '';
@@ -191,12 +165,10 @@ function startTimer() {
     clearInterval(timerInterval);
     let totalSeconds = hours * 3600 + minutes * 60 + seconds;
     timerSpinner.style.display = 'none';
-    document.getElementById('loading').style.display = 'none';
     timerInterval = setInterval(() => {
         if (totalSeconds <= 0) {
             clearInterval(timerInterval);
             document.getElementById('timerDisplay').innerText = "Selesai!";
-            alert('Timer selesai!');
             return;
         }
         const h = Math.floor(totalSeconds / 3600);
@@ -209,7 +181,6 @@ function startTimer() {
 
 // Text Case Converter with Validation
 function convertText(caseType) {
-    document.getElementById('loading').style.display = 'block';
     const text = document.getElementById('textInput').value;
     const textError = document.getElementById('textError');
     const spinnerId = `text${caseType.charAt(0).toUpperCase() + caseType.slice(1)}Spinner`;
@@ -217,7 +188,6 @@ function convertText(caseType) {
     if (!text) {
         textError.innerText = 'Masukkan teks terlebih dahulu!';
         document.getElementById('textInput').focus();
-        document.getElementById('loading').style.display = 'none';
         return;
     }
     textError.innerText = '';
@@ -232,17 +202,10 @@ function convertText(caseType) {
     }
     document.getElementById('textResult').innerText = result;
     spinner.style.display = 'none';
-    document.getElementById('loading').style.display = 'none';
 }
 
-// Currency Converter with Static Rates
-const exchangeRates = {
-    USD: { IDR: 14500 },
-    IDR: { USD: 1/14500 }
-};
-
+// Currency Converter with Validation
 function convertCurrency() {
-    document.getElementById('loading').style.display = 'block';
     const amount = parseFloat(document.getElementById('amount').value) || 0;
     const from = document.getElementById('fromCurrency').value;
     const to = document.getElementById('toCurrency').value;
@@ -251,16 +214,14 @@ function convertCurrency() {
     if (amount < 0 || amount > 1000000) {
         currencyError.innerText = 'Masukkan jumlah yang valid (0-1,000,000)!';
         document.getElementById('amount').focus();
-        document.getElementById('loading').style.display = 'none';
         return;
     }
     currencyError.innerText = '';
     currencySpinner.style.display = 'inline-block';
-    const rate = exchangeRates[from][to] || 1;
+    let rate = (from === 'USD' && to === 'IDR') ? 14500 : (from === 'IDR' && to === 'USD') ? 1/14500 : 1;
     const result = amount * rate;
     document.getElementById('currencyResult').innerText = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
     currencySpinner.style.display = 'none';
-    document.getElementById('loading').style.display = 'none';
 }
 
 // Chat Box
@@ -275,13 +236,13 @@ document.querySelector('.chat-send').addEventListener('click', () => {
     if (message) {
         chatMessages.innerHTML += `<p><strong>Kamu:</strong> ${message}</p>`;
         if (message === 'bantuan') {
-            chatMessages.innerHTML += `<p><strong>Bot:</strong> Cek <a href="#" data-tool="help">Bantuan</a> untuk panduan!</p>`;
+            chatMessages.innerHTML += `<p><strong>Bot:</strong> Silakan cek halaman <a href="#" data-tool="help">Bantuan</a> untuk panduan lengkap!</p>`;
         } else if (message === 'kontak') {
-            chatMessages.innerHTML += `<p><strong>Bot:</strong> Hubungi <a href="mailto:vin.nesia.id@gmail.com">email</a> atau <a href="https://wa.me/62895354511777">WhatsApp</a>.</p>`;
+            chatMessages.innerHTML += `<p><strong>Bot:</strong> Hubungi kami di <a href="mailto:vin.nesia.id@gmail.com">email</a> atau <a href="https://wa.me/62895354511777" target="_blank">WhatsApp</a>.</p>`;
         } else if (message.includes('penting')) {
-            chatMessages.innerHTML += `<p><strong>Bot:</strong> Ini penting! Hubungi <a href="https://wa.me/62895354511777">WhatsApp</a> atau <a href="mailto:vin.nesia.id@gmail.com">email</a>.</p>`;
+            chatMessages.innerHTML += `<p><strong>Bot:</strong> Ini penting! Hubungi <a href="https://wa.me/62895354511777" target="_blank">WhatsApp</a> atau <a href="mailto:vin.nesia.id@gmail.com">email</a>.</p>`;
         } else {
-            chatMessages.innerHTML += `<p><strong>Bot:</strong> Maaf, tidak mengerti. Ketik 'bantuan' atau 'kontak'.</p>`;
+            chatMessages.innerHTML += `<p><strong>Bot:</strong> Maaf, saya tidak mengerti. Ketik 'bantuan' atau 'kontak'.</p>`;
         }
         input.value = '';
         chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -294,138 +255,41 @@ document.querySelector('.chat-input').addEventListener('keypress', (e) => {
     }
 });
 
-// Contact Form with Local CAPTCHA
-let captchaAnswer;
-function generateCaptcha() {
-    const num1 = Math.floor(Math.random() * 10) + 1;
-    const num2 = Math.floor(Math.random() * 10) + 1;
-    captchaAnswer = num1 + num2;
-    document.getElementById('captchaQuestion').innerText = `${num1} + ${num2}`;
-}
-
+// Contact Form with EmailJS and CAPTCHA
 document.querySelector('#contact form').addEventListener('submit', (e) => {
-    document.getElementById('loading').style.display = 'block';
     e.preventDefault();
     const form = e.target;
     const name = form.name.value.trim();
     const email = form.email.value.trim();
     const message = form.message.value.trim();
-    const captchaInput = parseInt(document.getElementById('captchaInput').value) || 0;
+    const captcha = parseInt(form.captcha.value) || 0;
     if (!name || !email || !message) {
         alert('Semua field harus diisi!');
-        document.getElementById('loading').style.display = 'none';
         return;
     }
-    if (captchaInput !== captchaAnswer) {
-        alert('CAPTCHA salah!');
-        document.getElementById('captchaInput').focus();
-        document.getElementById('loading').style.display = 'none';
+    if (captcha !== 4) { // 2 + 2 = 4
+        alert('CAPTCHA salah! 2 + 2 = ?');
+        form.captcha.focus();
         return;
     }
     console.log('Form data:', { name, email, message });
-    alert('Pesan berhasil dikirim! (Simulasi, email tidak terkirim karena tanpa API)');
-    form.reset();
-    generateCaptcha();
-    document.getElementById('loading').style.display = 'none';
+    emailjs.sendForm('service_zrumu1h', 'template_b3ayww4', form)
+        .then((result) => {
+            console.log('Email sent:', result);
+            alert('Pesan berhasil dikirim!');
+            form.reset();
+        }, (error) => {
+            console.error('Email error:', error);
+            alert('Gagal mengirim pesan: ' + (error.text || 'Periksa konsol untuk detail'));
+        });
 });
 
 // Settings
-const translations = {
-    id: {
-        welcome: "Selamat Datang di Secz Tools!",
-        calculate: "Hitung",
-        qrcode: "QR Code Generator",
-        password: "Password Generator",
-        timer: "Countdown Timer",
-        textcase: "Text Case Converter",
-        currency: "Currency Converter",
-        tips: "Tips & Trik",
-        gallery: "Galeri",
-        settings: "Pengaturan",
-        faq: "Pertanyaan Umum (FAQ)",
-        about: "Tentang Kami",
-        terms: "Syarat & Ketentuan",
-        privacy: "Kebijakan Privasi",
-        help: "Bantuan",
-        contact: "Hubungi Kami",
-        footerAbout: "Tentang Kami",
-        footerServices: "Layanan",
-        footerContact: "Kontak"
-    },
-    en: {
-        welcome: "Welcome to Secz Tools!",
-        calculate: "Calculate",
-        qrcode: "QR Code Generator",
-        password: "Password Generator",
-        timer: "Countdown Timer",
-        textcase: "Text Case Converter",
-        currency: "Currency Converter",
-        tips: "Tips & Tricks",
-        gallery: "Gallery",
-        settings: "Settings",
-        faq: "Frequently Asked Questions (FAQ)",
-        about: "About Us",
-        terms: "Terms & Conditions",
-        privacy: "Privacy Policy",
-        help: "Help",
-        contact: "Contact Us",
-        footerAbout: "About Us",
-        footerServices: "Services",
-        footerContact: "Contact"
-    }
-};
-
-function updateLanguage() {
-    const lang = localStorage.getItem('language') || 'id';
-    document.getElementById('home-title').innerText = translations[lang].welcome;
-    document.getElementById('age-bmi-title').innerText = translations[lang].calculate;
-    document.getElementById('calc-age-btn').innerText = translations[lang].calculate;
-    document.getElementById('calc-bmi-btn').innerText = translations[lang].calculate;
-    document.getElementById('qrcode-title').innerText = translations[lang].qrcode;
-    document.getElementById('gen-qr-btn').innerText = translations[lang].qrcode.split(' ')[0];
-    document.getElementById('password-title').innerText = translations[lang].password;
-    document.getElementById('gen-pass-btn').innerText = translations[lang].password.split(' ')[0];
-    document.getElementById('timer-title').innerText = translations[lang].timer;
-    document.getElementById('start-timer-btn').innerText = translations[lang].timer.split(' ')[0];
-    document.getElementById('textcase-title').innerText = translations[lang].textcase;
-    document.getElementById('upper-btn').innerText = translations[lang].textcase.split(' ')[0] + " Upper";
-    document.getElementById('lower-btn').innerText = translations[lang].textcase.split(' ')[0] + " Lower";
-    document.getElementById('capital-btn').innerText = translations[lang].textcase.split(' ')[0] + " Capital";
-    document.getElementById('currency-title').innerText = translations[lang].currency;
-    document.getElementById('convert-currency-btn').innerText = translations[lang].currency.split(' ')[0];
-    document.getElementById('tips-title').innerText = translations[lang].tips;
-    document.getElementById('gallery-title').innerText = translations[lang].gallery;
-    document.getElementById('settings-title').innerText = translations[lang].settings;
-    document.getElementById('save-settings-btn').innerText = translations[lang].settings.split(' ')[0];
-    document.getElementById('faq-title').innerText = translations[lang].faq;
-    document.getElementById('about-title').innerText = translations[lang].about;
-    document.getElementById('terms-title').innerText = translations[lang].terms;
-    document.getElementById('privacy-title').innerText = translations[lang].privacy;
-    document.getElementById('help-title').innerText = translations[lang].help;
-    document.getElementById('contact-title').innerText = translations[lang].contact;
-    document.getElementById('footer-about').innerText = translations[lang].footerAbout;
-    document.getElementById('footer-services').innerText = translations[lang].footerServices;
-    document.getElementById('footer-contact').innerText = translations[lang].footerContact;
-}
-
 function saveSettings() {
     const darkModePref = document.getElementById('darkModePref').checked;
     const language = document.getElementById('language').value;
     document.body.classList.toggle('dark-mode', darkModePref);
     localStorage.setItem('darkMode', darkModePref);
     localStorage.setItem('language', language);
-    updateLanguage();
     document.getElementById('settingsResult').innerText = 'Pengaturan disimpan!';
-}
-
-// Share Button (Browser Support)
-function sharePage() {
-    if (navigator.share) {
-        navigator.share({
-            title: document.title,
-            url: window.location.href
-        }).catch(console.error);
-    } else {
-        alert('Fitur share tidak didukung di browser ini.');
-    }
 }
