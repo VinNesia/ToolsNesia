@@ -1,143 +1,295 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id-ID">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secz Tools menyediakan alat praktis seperti kalkulator, QR Code, dan konverter untuk kebutuhan sehari-hari.">
+    <meta name="keywords" content="kalkulator, QR code, password generator, tools online">
+    <meta property="og:title" content="Secz Tools - Alat Praktis Sehari-hari">
+    <meta property="og:image" content="https://username.github.io/secz-tools/logo.png">
+    <meta property="og:description" content="Jelajahi tools seperti kalkulator, QR Code, dan konverter gratis!">
+    <link rel="icon" type="image/png" href="favicon.png">
     <title>Secz Tools</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Secz Tools</div>
-        <button class="logout-btn">Logout</button>
-    </header>
-    <div class="sidebar">
-        <h2 class="logo">Secz Tools</h2>
-        <nav>
-            <button class="nav-btn" data-tool="home"><i class="fas fa-home"></i> Home</button>
-            <button class="nav-btn" data-tool="qrcode"><i class="fas fa-qrcode"></i> QR Code Generator</button>
-            <button class="nav-btn" data-tool="password"><i class="fas fa-lock"></i> Password Generator</button>
-            <button class="nav-btn" data-tool="timer"><i class="fas fa-clock"></i> Countdown Timer</button>
-            <button class="nav-btn" data-tool="textcase"><i class="fas fa-text-height"></i> Text Case Converter</button>
-            <button class="nav-btn" data-tool="currency"><i class="fas fa-exchange-alt"></i> Currency Converter</button>
-            <button class="nav-btn" data-tool="age-bmi"><i class="fas fa-calculator"></i> Kalkulator Umur & BMI</button>
-            <button class="nav-btn" data-tool="settings"><i class="fas fa-cog"></i> Pengaturan</button>
-            <button class="nav-btn" data-tool="about"><i class="fas fa-info"></i> Tentang Kami</button>
-        </nav>
+    <div id="loading" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;">
+        <div class="spinner" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);"></div>
     </div>
-    <div class="main-content">
-        <div id="loading" class="loading">Loading...</div>
-        <div id="home" class="tool-content">
-            <h2>Selamat Datang di Secz Tools!</h2>
+    <header>
+        <img src="logo.png" alt="Logo Secz Tools" class="logo">
+        <h1>Secz Tools</h1>
+        <button id="themeToggle">Toggle Tema</button>
+        <a href="#" class="contact-icon" data-tool="contact"><i class="fas fa-envelope"></i></a>
+    </header>
+    <nav>
+        <button class="nav-btn" data-tool="home"><i class="fas fa-home"></i> Beranda</button>
+        <div class="nav-dropdown">
+            <button class="nav-btn dropdown-toggle" data-tool="tools">Tools <i class="fas fa-caret-down"></i></button>
+            <div class="dropdown-content">
+                <button class="nav-subbtn" data-tool="age-bmi"><i class="fas fa-calculator"></i> Kalkulator</button>
+                <button class="nav-subbtn" data-tool="qrcode"><i class="fas fa-qrcode"></i> QR Code</button>
+                <button class="nav-subbtn" data-tool="password"><i class="fas fa-lock"></i> Password</button>
+                <button class="nav-subbtn" data-tool="timer"><i class="fas fa-clock"></i> Timer</button>
+                <button class="nav-subbtn" data-tool="textcase"><i class="fas fa-text-height"></i> Text Converter</button>
+                <button class="nav-subbtn" data-tool="currency"><i class="fas fa-exchange-alt"></i> Currency</button>
+            </div>
+        </div>
+        <button class="nav-btn" data-tool="tips"><i class="fas fa-lightbulb"></i> Tips & Trik</button>
+        <button class="nav-btn" data-tool="gallery"><i class="fas fa-images"></i> Galeri</button>
+        <button class="nav-btn" data-tool="settings"><i class="fas fa-cog"></i> Pengaturan</button>
+        <button class="nav-btn" data-tool="faq"><i class="fas fa-question-circle"></i> FAQ</button>
+        <button class="nav-btn" data-tool="about"><i class="fas fa-info-circle"></i> Tentang Kami</button>
+        <button class="nav-btn" data-tool="terms"><i class="fas fa-file-contract"></i> Syarat & Ketentuan</button>
+        <button class="nav-btn" data-tool="privacy"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</button>
+        <button class="nav-btn" data-tool="help"><i class="fas fa-question-circle"></i> Bantuan</button>
+        <button class="nav-btn" data-tool="contact"><i class="fas fa-envelope"></i> Hubungi Kami</button>
+    </nav>
+    <main id="toolArea">
+        <div class="tool-content" id="home">
+            <h2 id="home-title">Selamat Datang di Secz Tools!</h2>
             <div class="tool-grid">
-                <div class="tool-item" data-tool="qrcode"><i class="fas fa-qrcode"></i> QR Code Generator</div>
-                <div class="tool-item" data-tool="password"><i class="fas fa-lock"></i> Password Generator</div>
-                <div class="tool-item" data-tool="timer"><i class="fas fa-clock"></i> Countdown Timer</div>
-                <div class="tool-item" data-tool="textcase"><i class="fas fa-text-height"></i> Text Case Converter</div>
-                <div class="tool-item" data-tool="currency"><i class="fas fa-exchange-alt"></i> Currency Converter</div>
-                <div class="tool-item" data-tool="age-bmi"><i class="fas fa-calculator"></i> Kalkulator Umur & BMI</div>
+                <div class="tool-item" data-tool="age-bmi"><i class="fas fa-calculator"></i> Kalkulator</div>
+                <div class="tool-item" data-tool="qrcode"><i class="fas fa-qrcode"></i> QR Code</div>
+                <div class="tool-item" data-tool="password"><i class="fas fa-lock"></i> Password</div>
+                <div class="tool-item" data-tool="timer"><i class="fas fa-clock"></i> Timer</div>
+                <div class="tool-item" data-tool="textcase"><i class="fas fa-text-height"></i> Text Converter</div>
+                <div class="tool-item" data-tool="currency"><i class="fas fa-exchange-alt"></i> Currency</div>
             </div>
+            <button class="back-btn" onclick="goToDefault()">Lihat Semua Tools</button>
         </div>
-        <div id="qrcode" class="tool-content">
-            <h2>QR Code Generator</h2>
-            <div class="tool-section">
-                <label for="qrInput">Masukkan URL atau Teks:</label>
-                <input type="text" id="qrInput">
-                <p id="qrError" class="error"></p>
-                <button onclick="generateQR()">Generate QR</button>
+        <div class="tool-content" id="age-bmi" style="display:none;">
+            <h2 id="age-bmi-title">Kalkulator Umur & BMI</h2>
+            <div class="input-group">
+                <label>Usia: Masukkan Tanggal Lahir</label>
+                <input type="date" id="birthdate">
+                <button id="calc-age-btn" onclick="calculateAge()">Hitung Usia</button>
+                <p id="ageResult"></p>
+                <p id="ageError" class="error"></p>
+            </div>
+            <div class="input-group">
+                <label>Berat (kg):</label>
+                <input type="number" id="weight" min="0" max="1000">
+                <label>Tinggi (cm):</label>
+                <input type="number" id="height" min="0" max="300">
+                <button id="calc-bmi-btn" onclick="calculateBMI()">Hitung BMI</button>
+                <p id="bmiResult"></p>
+                <p id="bmiError" class="error"></p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="qrcode" style="display:none;">
+            <h2 id="qrcode-title">QR Code Generator</h2>
+            <div class="input-group">
+                <input type="text" id="qrInput" placeholder="Masukkan URL atau Teks">
+                <button id="gen-qr-btn" onclick="generateQR()"><span class="spinner" id="qrSpinner"></span>Buat QR</button>
                 <div id="qrCode"></div>
-                <button id="downloadQR" style="display: none;">Unduh QR</button>
+                <button id="downloadQR" style="display:none;">Unduh QR</button>
+                <p id="qrError" class="error"></p>
             </div>
+            <p id="qrSuccess" class="success"></p>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
-        <div id="password" class="tool-content">
-            <h2>Password Generator</h2>
-            <div class="tool-section">
-                <label for="passLength">Panjang Password:</label>
-                <input type="number" id="passLength" min="8" max="20" value="12">
+        <div class="tool-content" id="password" style="display:none;">
+            <h2 id="password-title">Password Generator</h2>
+            <div class="input-group">
+                <button id="gen-pass-btn" onclick="generatePassword()"><span class="spinner" id="passSpinner"></span>Buat Password</button>
                 <p id="passwordResult"></p>
-                <button onclick="generatePassword()">Generate</button>
             </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
-        <div id="timer" class="tool-content">
-            <h2>Countdown Timer</h2>
-            <div class="tool-section">
-                <label for="hours">Jam:</label>
-                <input type="number" id="hours" min="0" max="99" value="0">
-                <label for="minutes">Menit:</label>
-                <input type="number" id="minutes" min="0" max="59" value="0">
-                <label for="seconds">Detik:</label>
-                <input type="number" id="seconds" min="0" max="59" value="0">
+        <div class="tool-content" id="timer" style="display:none;">
+            <h2 id="timer-title">Countdown Timer</h2>
+            <div class="input-group">
+                <input type="number" id="hours" placeholder="Jam" min="0" max="99">
+                <input type="number" id="minutes" placeholder="Menit" min="0" max="59">
+                <input type="number" id="seconds" placeholder="Detik" min="0" max="59">
+                <button id="start-timer-btn" onclick="startTimer()"><span class="spinner" id="timerSpinner"></span>Mulai</button>
+                <p id="timerDisplay"></p>
                 <p id="timerError" class="error"></p>
-                <button onclick="startTimer()">Mulai</button>
-                <p id="timerDisplay">00:00:00</p>
             </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
-        <div id="textcase" class="tool-content">
-            <h2>Text Case Converter</h2>
-            <div class="tool-section">
-                <label for="textInput">Teks:</label>
-                <input type="text" id="textInput">
-                <p id="textError" class="error"></p>
-                <button onclick="convertText('upper')">Uppercase</button>
-                <button onclick="convertText('lower')">Lowercase</button>
-                <button onclick="convertText('capitalize')">Capitalize</button>
+        <div class="tool-content" id="textcase" style="display:none;">
+            <h2 id="textcase-title">Text Case Converter</h2>
+            <div class="input-group">
+                <textarea id="textInput" placeholder="Masukkan teks"></textarea>
+                <div class="button-group">
+                    <button id="upper-btn" onclick="convertText('upper')"><span class="spinner" id="textUpperSpinner"></span>Huruf Besar</button>
+                    <button id="lower-btn" onclick="convertText('lower')"><span class="spinner" id="textLowerSpinner"></span>Huruf Kecil</button>
+                    <button id="capital-btn" onclick="convertText('capitalize')"><span class="spinner" id="textCapitalSpinner"></span>Kata Besar</button>
+                </div>
                 <p id="textResult"></p>
+                <p id="textError" class="error"></p>
             </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
-        <div id="currency" class="tool-content">
-            <h2>Currency Converter</h2>
-            <div class="tool-section">
-                <label for="amount">Jumlah:</label>
-                <input type="number" id="amount" min="0" max="1000000" step="0.01" value="0">
-                <label for="fromCurrency">Dari:</label>
+        <div class="tool-content" id="currency" style="display:none;">
+            <h2 id="currency-title">Currency Converter</h2>
+            <div class="input-group">
+                <input type="number" id="amount" placeholder="Jumlah" min="0" max="1000000">
                 <select id="fromCurrency">
                     <option value="USD">USD</option>
                     <option value="IDR">IDR</option>
                 </select>
-                <label for="toCurrency">Ke:</label>
                 <select id="toCurrency">
                     <option value="IDR">IDR</option>
                     <option value="USD">USD</option>
                 </select>
-                <p id="currencyError" class="error"></p>
-                <button onclick="convertCurrency()">Konversi</button>
+                <button id="convert-currency-btn" onclick="convertCurrency()"><span class="spinner" id="currencySpinner"></span>Konversi</button>
                 <p id="currencyResult"></p>
+                <p id="currencyError" class="error"></p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="tips" style="display:none;">
+            <h2 id="tips-title">Tips & Trik</h2>
+            <div class="tips-content">
+                <h3>Artikel Terbaru</h3>
+                <div class="tip-item">
+                    <h4>Cara Membuat QR Code Aman</h4>
+                    <p>Pastikan URL valid dan gunakan password untuk proteksi tambahan.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>Tips Memilih Password Kuat</h4>
+                    <p>Gunakan kombinasi huruf, angka, simbol, minimal 12 karakter.</p>
+                </div>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="gallery" style="display:none;">
+            <h2 id="gallery-title">Galeri</h2>
+            <div class="gallery-content">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/200?text=QR+Code+Contoh" alt="Contoh QR Code">
+                    <p>Scan untuk lihat contoh!</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/200?text=Text+Converted" alt="Contoh Text Converted">
+                    <p>Hasil konversi teks.</p>
+                </div>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="settings" style="display:none;">
+            <h2 id="settings-title">Pengaturan</h2>
+            <div class="settings-content">
+                <label><input type="checkbox" id="darkModePref"> Tema Gelap</label>
+                <label><select id="language">
+                    <option value="id">Bahasa Indonesia</option>
+                    <option value="en">English</option>
+                </select></label>
+                <button id="save-settings-btn" onclick="saveSettings()">Simpan Pengaturan</button>
+                <p id="settingsResult"></p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="faq" style="display:none;">
+            <h2 id="faq-title">Pertanyaan Umum (FAQ)</h2>
+            <div class="faq-content">
+                <div class="faq-item">
+                    <h4>Apakah situs ini gratis?</h4>
+                    <p>Ya, semua tools gratis dengan batasan tertentu.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Apakah data saya aman?</h4>
+                    <p>Kami tidak menyimpan data Anda; semuanya diproses sementara.</p>
+                </div>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="about" style="display:none;">
+            <h2 id="about-title">Tentang Kami</h2>
+            <div class="about-content">
+                <p>Selamat datang di <strong>Secz Tools</strong>, platform yang dirancang untuk menyediakan alat-alat praktis. Kami dipimpin oleh Vin.</p>
+                <img src="https://via.placeholder.com/100?text=Vin+Photo" alt="Foto Vin" class="team-photo">
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="terms" style="display:none;">
+            <h2 id="terms-title">Syarat & Ketentuan</h2>
+            <div class="terms-content">
+                <p>Dengan mengakses situs ini, Anda setuju:</p>
+                <ul>
+                    <li><strong>Penggunaan Sah:</strong> Hanya untuk keperluan legal.</li>
+                    <li><strong>Tidak Ada Jaminan:</strong> Disediakan "sebagaimana adanya".</li>
+                </ul>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="privacy" style="display:none;">
+            <h2 id="privacy-title">Kebijakan Privasi</h2>
+            <div class="privacy-content">
+                <p>Kami tidak mengumpulkan data pribadi Anda.</p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="help" style="display:none;">
+            <h2 id="help-title">Bantuan</h2>
+            <div class="help-content">
+                <p>Jika QR tidak muncul, cek koneksi dan input valid.</p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="contact" style="display:none;">
+            <h2 id="contact-title">Hubungi Kami</h2>
+            <div class="help-content">
+                <p>Isi formulir di bawah:</p>
+                <form>
+                    <label>Nama:</label><input type="text" name="name" required>
+                    <label>Email:</label><input type="email" name="email" required>
+                    <label>Pesan:</label><textarea name="message" required></textarea>
+                    <label>CAPTCHA: <span id="captchaQuestion"></span> = <input type="number" name="captcha" id="captchaInput" required></label>
+                    <button type="submit">Kirim</button>
+                </form>
+                <p><a href="mailto:vin.nesia.id@gmail.com">Email</a> | <a href="https://wa.me/62895354511777" target="_blank">WhatsApp</a></p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3 id="footer-about">Tentang Kami</h3>
+                <p>Secz Tools dibuat oleh Vin.</p>
+            </div>
+            <div class="footer-section">
+                <h3 id="footer-services">Layanan</h3>
+                <ul>
+                    <li><a href="#" data-tool="about">Tentang Kami</a></li>
+                    <li><a href="#" data-tool="terms">Syarat & Ketentuan</a></li>
+                    <li><a href="#" data-tool="privacy">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 id="footer-contact">Kontak</h3>
+                <p>Email: <a href="mailto:vin.nesia.id@gmail.com">vin.nesia.id@gmail.com</a></p>
+                <p>Telp: <a href="tel:+62895354511777">+62 895-3545-11777</a></p>
+                <div class="social-icons">
+                    <a href="https://instagram.com/vin.nesia.id" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/62895354511777" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
         </div>
-        <div id="age-bmi" class="tool-content">
-            <h2>Kalkulator Umur & BMI</h2>
-            <div class="tool-section">
-                <label for="birthdate">Tanggal Lahir:</label>
-                <input type="date" id="birthdate">
-                <p id="ageError" class="error"></p>
-                <button onclick="calculateAge()">Hitung Usia</button>
-                <p id="ageResult"></p>
-                <label for="weight">Berat (kg):</label>
-                <input type="number" id="weight" min="1" max="500" step="0.1">
-                <label for="height">Tinggi (cm):</label>
-                <input type="number" id="height" min="10" max="300" step="0.1">
-                <p id="bmiError" class="error"></p>
-                <button onclick="calculateBMI()">Hitung BMI</button>
-                <p id="bmiResult"></p>
-            </div>
+        <div class="footer-bottom">
+            <p>© 2025 Secz Tools. All rights reserved.</p>
         </div>
-        <div id="settings" class="tool-content">
-            <h2>Pengaturan</h2>
-            <div class="tool-section">
-                <p>Pengaturan tersedia di sini.</p>
+    </footer>
+    <div class="chat-box">
+        <button class="chat-toggle">Chat dengan Kami <i class="fas fa-comment"></i></button>
+        <div class="chat-content">
+            <div class="chat-messages">
+                <p><strong>Bot:</strong> Halo! Saya asisten virtual Secz Tools. Ada yang bisa saya bantu?</p>
+                <p><strong>Bot:</strong> - Ketik "bantuan" untuk panduan.</p>
+                <p><strong>Bot:</strong> - Ketik "kontak" untuk hubungi tim.</p>
             </div>
-        </div>
-        <div id="about" class="tool-content">
-            <h2>Tentang Kami</h2>
-            <p>Secz Tools dibuat untuk membantu pengguna dengan alat praktis.</p>
+            <input type="text" class="chat-input" placeholder="Ketik pesan...">
+            <button class="chat-send">Kirim</button>
         </div>
     </div>
-    <footer>
-        <p>© 2025 Secz Tools. All rights reserved.</p>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js" integrity="sha384-xxx" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
