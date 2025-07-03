@@ -15,9 +15,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="loading" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;">
-        <div class="spinner" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);"></div>
-    </div>
     <header>
         <img src="logo.png" alt="Logo Secz Tools" class="logo">
         <h1>Secz Tools</h1>
@@ -49,7 +46,7 @@
     </nav>
     <main id="toolArea">
         <div class="tool-content" id="home">
-            <h2 id="home-title">Selamat Datang di Secz Tools!</h2>
+            <h2>Selamat Datang di Secz Tools!</h2>
             <div class="tool-grid">
                 <div class="tool-item" data-tool="age-bmi"><i class="fas fa-calculator"></i> Kalkulator</div>
                 <div class="tool-item" data-tool="qrcode"><i class="fas fa-qrcode"></i> QR Code</div>
@@ -61,11 +58,11 @@
             <button class="back-btn" onclick="goToDefault()">Lihat Semua Tools</button>
         </div>
         <div class="tool-content" id="age-bmi" style="display:none;">
-            <h2 id="age-bmi-title">Kalkulator Umur & BMI</h2>
+            <h2>Kalkulator Umur & BMI</h2>
             <div class="input-group">
                 <label>Usia: Masukkan Tanggal Lahir</label>
                 <input type="date" id="birthdate">
-                <button id="calc-age-btn" onclick="calculateAge()">Hitung Usia</button>
+                <button onclick="calculateAge()">Hitung Usia</button>
                 <p id="ageResult"></p>
                 <p id="ageError" class="error"></p>
             </div>
@@ -74,17 +71,17 @@
                 <input type="number" id="weight" min="0" max="1000">
                 <label>Tinggi (cm):</label>
                 <input type="number" id="height" min="0" max="300">
-                <button id="calc-bmi-btn" onclick="calculateBMI()">Hitung BMI</button>
+                <button onclick="calculateBMI()">Hitung BMI</button>
                 <p id="bmiResult"></p>
                 <p id="bmiError" class="error"></p>
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="qrcode" style="display:none;">
-            <h2 id="qrcode-title">QR Code Generator</h2>
+            <h2>QR Code Generator</h2>
             <div class="input-group">
                 <input type="text" id="qrInput" placeholder="Masukkan URL atau Teks">
-                <button id="gen-qr-btn" onclick="generateQR()"><span class="spinner" id="qrSpinner"></span>Buat QR</button>
+                <button onclick="generateQR()"><span class="spinner" id="qrSpinner"></span>Buat QR</button>
                 <div id="qrCode"></div>
                 <button id="downloadQR" style="display:none;">Unduh QR</button>
                 <p id="qrError" class="error"></p>
@@ -93,33 +90,33 @@
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="password" style="display:none;">
-            <h2 id="password-title">Password Generator</h2>
+            <h2>Password Generator</h2>
             <div class="input-group">
-                <button id="gen-pass-btn" onclick="generatePassword()"><span class="spinner" id="passSpinner"></span>Buat Password</button>
+                <button onclick="generatePassword()"><span class="spinner" id="passSpinner"></span>Buat Password</button>
                 <p id="passwordResult"></p>
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="timer" style="display:none;">
-            <h2 id="timer-title">Countdown Timer</h2>
+            <h2>Countdown Timer</h2>
             <div class="input-group">
                 <input type="number" id="hours" placeholder="Jam" min="0" max="99">
                 <input type="number" id="minutes" placeholder="Menit" min="0" max="59">
                 <input type="number" id="seconds" placeholder="Detik" min="0" max="59">
-                <button id="start-timer-btn" onclick="startTimer()"><span class="spinner" id="timerSpinner"></span>Mulai</button>
+                <button onclick="startTimer()"><span class="spinner" id="timerSpinner"></span>Mulai</button>
                 <p id="timerDisplay"></p>
                 <p id="timerError" class="error"></p>
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="textcase" style="display:none;">
-            <h2 id="textcase-title">Text Case Converter</h2>
+            <h2>Text Case Converter</h2>
             <div class="input-group">
                 <textarea id="textInput" placeholder="Masukkan teks"></textarea>
                 <div class="button-group">
-                    <button id="upper-btn" onclick="convertText('upper')"><span class="spinner" id="textUpperSpinner"></span>Huruf Besar</button>
-                    <button id="lower-btn" onclick="convertText('lower')"><span class="spinner" id="textLowerSpinner"></span>Huruf Kecil</button>
-                    <button id="capital-btn" onclick="convertText('capitalize')"><span class="spinner" id="textCapitalSpinner"></span>Kata Besar</button>
+                    <button onclick="convertText('upper')"><span class="spinner" id="textUpperSpinner"></span>Huruf Besar</button>
+                    <button onclick="convertText('lower')"><span class="spinner" id="textLowerSpinner"></span>Huruf Kecil</button>
+                    <button onclick="convertText('capitalize')"><span class="spinner" id="textCapitalSpinner"></span>Kata Besar</button>
                 </div>
                 <p id="textResult"></p>
                 <p id="textError" class="error"></p>
@@ -127,7 +124,7 @@
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="currency" style="display:none;">
-            <h2 id="currency-title">Currency Converter</h2>
+            <h2>Currency Converter</h2>
             <div class="input-group">
                 <input type="number" id="amount" placeholder="Jumlah" min="0" max="1000000">
                 <select id="fromCurrency">
@@ -138,56 +135,56 @@
                     <option value="IDR">IDR</option>
                     <option value="USD">USD</option>
                 </select>
-                <button id="convert-currency-btn" onclick="convertCurrency()"><span class="spinner" id="currencySpinner"></span>Konversi</button>
+                <button onclick="convertCurrency()"><span class="spinner" id="currencySpinner"></span>Konversi</button>
                 <p id="currencyResult"></p>
                 <p id="currencyError" class="error"></p>
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="tips" style="display:none;">
-            <h2 id="tips-title">Tips & Trik</h2>
+            <h2>Tips & Trik</h2>
             <div class="tips-content">
                 <h3>Artikel Terbaru</h3>
                 <div class="tip-item">
                     <h4>Cara Membuat QR Code Aman</h4>
-                    <p>Pastikan URL valid dan gunakan password untuk proteksi tambahan.</p>
+                    <p>Pastikan URL yang dimasukkan valid dan gunakan password untuk proteksi tambahan.</p>
                 </div>
                 <div class="tip-item">
                     <h4>Tips Memilih Password Kuat</h4>
-                    <p>Gunakan kombinasi huruf, angka, simbol, minimal 12 karakter.</p>
+                    <p>Gunakan kombinasi huruf, angka, dan simbol, minimal 12 karakter.</p>
                 </div>
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="gallery" style="display:none;">
-            <h2 id="gallery-title">Galeri</h2>
+            <h2>Galeri</h2>
             <div class="gallery-content">
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/200?text=QR+Code+Contoh" alt="Contoh QR Code">
+                    <img src="https://via.placeholder.com/200?text=QR+Code+Contoh" alt="QR Code Contoh">
                     <p>Scan untuk lihat contoh!</p>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/200?text=Text+Converted" alt="Contoh Text Converted">
+                    <img src="https://via.placeholder.com/200?text=Text+Converted" alt="Text Converted Contoh">
                     <p>Hasil konversi teks.</p>
                 </div>
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="settings" style="display:none;">
-            <h2 id="settings-title">Pengaturan</h2>
+            <h2>Pengaturan</h2>
             <div class="settings-content">
                 <label><input type="checkbox" id="darkModePref"> Tema Gelap</label>
                 <label><select id="language">
                     <option value="id">Bahasa Indonesia</option>
                     <option value="en">English</option>
                 </select></label>
-                <button id="save-settings-btn" onclick="saveSettings()">Simpan Pengaturan</button>
+                <button onclick="saveSettings()">Simpan Pengaturan</button>
                 <p id="settingsResult"></p>
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="faq" style="display:none;">
-            <h2 id="faq-title">Pertanyaan Umum (FAQ)</h2>
+            <h2>Pertanyaan Umum (FAQ)</h2>
             <div class="faq-content">
                 <div class="faq-item">
                     <h4>Apakah situs ini gratis?</h4>
@@ -201,47 +198,51 @@
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="about" style="display:none;">
-            <h2 id="about-title">Tentang Kami</h2>
+            <h2>Tentang Kami</h2>
             <div class="about-content">
-                <p>Selamat datang di <strong>Secz Tools</strong>, platform yang dirancang untuk menyediakan alat-alat praktis. Kami dipimpin oleh Vin.</p>
+                <p>Selamat datang di <strong>Secz Tools</strong>, platform yang dirancang untuk menyediakan alat-alat praktis dan mudah digunakan untuk kebutuhan sehari-hari. Kami menawarkan berbagai fitur seperti kalkulator umur dan BMI, generator QR Code, pembuat password, countdown timer, konverter teks, dan konverter mata uang.</p>
+                <p>Kami adalah tim yang berdedikasi, dipimpin oleh Vin, yang mencintai teknologi dan inovasi. Ikuti kami di <a href="https://instagram.com/vin.nesia.id" target="_blank">Instagram</a>.</p>
                 <img src="https://via.placeholder.com/100?text=Vin+Photo" alt="Foto Vin" class="team-photo">
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="terms" style="display:none;">
-            <h2 id="terms-title">Syarat & Ketentuan</h2>
+            <h2>Syarat & Ketentuan</h2>
             <div class="terms-content">
-                <p>Dengan mengakses situs ini, Anda setuju:</p>
+                <p>Dengan mengakses situs ini, Anda setuju untuk mematuhi syarat berikut:</p>
                 <ul>
-                    <li><strong>Penggunaan Sah:</strong> Hanya untuk keperluan legal.</li>
+                    <li><strong>Penggunaan yang Sah:</strong> Hanya untuk keperluan pribadi dan legal.</li>
                     <li><strong>Tidak Ada Jaminan:</strong> Disediakan "sebagaimana adanya".</li>
                 </ul>
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="privacy" style="display:none;">
-            <h2 id="privacy-title">Kebijakan Privasi</h2>
+            <h2>Kebijakan Privasi</h2>
             <div class="privacy-content">
-                <p>Kami tidak mengumpulkan data pribadi Anda.</p>
+                <p>Kami tidak mengumpulkan data pribadi Anda dan hanya memprosesnya sementara.</p>
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="help" style="display:none;">
-            <h2 id="help-title">Bantuan</h2>
+            <h2>Bantuan</h2>
             <div class="help-content">
-                <p>Jika QR tidak muncul, cek koneksi dan input valid.</p>
+                <h3>Troubleshooting</h3>
+                <p>Jika QR tidak muncul, cek koneksi internet dan pastikan input valid.</p>
+                <h3>Video Tutorial</h3>
+                <a href="https://youtube.com/placeholder" target="_blank">Lihat di YouTube</a>
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="contact" style="display:none;">
-            <h2 id="contact-title">Hubungi Kami</h2>
+            <h2>Hubungi Kami</h2>
             <div class="help-content">
-                <p>Isi formulir di bawah:</p>
+                <p>Kami siap membantu! Silakan isi formulir di bawah ini:</p>
                 <form>
                     <label>Nama:</label><input type="text" name="name" required>
                     <label>Email:</label><input type="email" name="email" required>
                     <label>Pesan:</label><textarea name="message" required></textarea>
-                    <label>CAPTCHA: <span id="captchaQuestion"></span> = <input type="number" name="captcha" id="captchaInput" required></label>
+                    <label>CAPTCHA: 2 + 2 = <input type="number" name="captcha" required></label>
                     <button type="submit">Kirim</button>
                 </form>
                 <p><a href="mailto:vin.nesia.id@gmail.com">Email</a> | <a href="https://wa.me/62895354511777" target="_blank">WhatsApp</a></p>
@@ -252,11 +253,11 @@
     <footer>
         <div class="footer-container">
             <div class="footer-section">
-                <h3 id="footer-about">Tentang Kami</h3>
-                <p>Secz Tools dibuat oleh Vin.</p>
+                <h3>Tentang Kami</h3>
+                <p>Secz Tools dibuat oleh Vin untuk mempermudah hidup Anda.</p>
             </div>
             <div class="footer-section">
-                <h3 id="footer-services">Layanan</h3>
+                <h3>Layanan</h3>
                 <ul>
                     <li><a href="#" data-tool="about">Tentang Kami</a></li>
                     <li><a href="#" data-tool="terms">Syarat & Ketentuan</a></li>
@@ -264,7 +265,7 @@
                 </ul>
             </div>
             <div class="footer-section">
-                <h3 id="footer-contact">Kontak</h3>
+                <h3>Kontak</h3>
                 <p>Email: <a href="mailto:vin.nesia.id@gmail.com">vin.nesia.id@gmail.com</a></p>
                 <p>Telp: <a href="tel:+62895354511777">+62 895-3545-11777</a></p>
                 <div class="social-icons">
@@ -289,6 +290,10 @@
             <button class="chat-send">Kirim</button>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init('aLROwrpQv9KqLSs96');
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <script src="script.js"></script>
 </body>
