@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secz Tools</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -17,10 +17,15 @@
         <h2 class="logo">Secz Tools</h2>
         <nav>
             <button class="nav-btn" data-tool="home"><i class="fas fa-home"></i> Home</button>
+            <button class="nav-btn" data-tool="qrcode"><i class="fas fa-qrcode"></i> QR Code Generator</button>
+            <button class="nav-btn" data-tool="password"><i class="fas fa-lock"></i> Password Generator</button>
+            <button class="nav-btn" data-tool="timer"><i class="fas fa-clock"></i> Countdown Timer</button>
+            <button class="nav-btn" data-tool="textcase"><i class="fas fa-text-height"></i> Text Case Converter</button>
+            <button class="nav-btn" data-tool="currency"><i class="fas fa-exchange-alt"></i> Currency Converter</button>
+            <button class="nav-btn" data-tool="age-bmi"><i class="fas fa-calculator"></i> Kalkulator Umur & BMI</button>
             <button class="nav-btn" data-tool="settings"><i class="fas fa-cog"></i> Pengaturan</button>
             <button class="nav-btn" data-tool="about"><i class="fas fa-info"></i> Tentang Kami</button>
         </nav>
-        <button class="theme-toggle"><i class="fas fa-adjust"></i> Tema</button>
     </div>
     <div class="main-content">
         <div id="loading" class="loading">Loading...</div>
@@ -121,9 +126,7 @@
         <div id="settings" class="tool-content">
             <h2>Pengaturan</h2>
             <div class="tool-section">
-                <label for="darkModePref">Dark Mode:</label>
-                <input type="checkbox" id="darkModePref">
-                <button onclick="saveSettings()">Simpan</button>
+                <p>Pengaturan tersedia di sini.</p>
             </div>
         </div>
         <div id="about" class="tool-content">
@@ -134,7 +137,7 @@
     <footer>
         <p>© 2025 Secz Tools. All rights reserved.</p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js" integrity="sha384-xxx" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
