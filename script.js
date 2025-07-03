@@ -1,41 +1,20 @@
-// Pastikan DOM dimuat sepenuhnya
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme Toggle and Persistence
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            const inputs = document.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => {
-                input.style.background = document.body.classList.contains('dark-mode') ? '#333' : '#ffffff';
-                input.style.color = document.body.classList.contains('dark-mode') ? '#e0e0e0' : '#000000';
-                input.style.borderColor = document.body.classList.contains('dark-mode') ? '#555' : '#ccc';
-            });
-            const labels = document.querySelectorAll('label');
-            labels.forEach(label => {
-                label.style.color = document.body.classList.contains('dark-mode') ? '#e0e0e0' : '#333';
-            });
             localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
         });
     }
 
-    // Load Saved Theme and Initialize
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark-mode');
     }
-    updateLanguage();
-    generateCaptcha();
-    updateGallery();
-    updateHistory();
-    updateTips();
-    showBookmarks();
 
-    // Navigation with Keyboard Support
-    document.querySelectorAll('.nav-btn').forEach(button => {
+    document.querySelectorAll('.tool-item, .nav-btn').forEach(button => {
         button.addEventListener('click', () => {
             const tool = button.dataset.tool;
             if (tool) {
-                logUsage(tool);
                 document.querySelectorAll('.tool-content').forEach(content => {
                     content.style.display = 'none';
                     content.classList.remove('active');
@@ -44,118 +23,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (target) {
                     target.style.display = 'block';
                     setTimeout(() => target.classList.add('active'), 10);
-                } else {
-                    console.error(`Target ${tool} tidak ditemukan!`);
                 }
-            }
-        });
-        button.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                button.click();
-            }
-        });
-        button.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            const tool = button.dataset.tool;
-            if (tool && !['home', 'bookmarks'].includes(tool)) {
-                toggleBookmark(tool);
             }
         });
     });
 
-    // Contact Icon (di-handle di navigasi biasa)
-    const contactBtn = document.querySelector('.contact-icon');
-    if (contactBtn) {
-        contactBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            logUsage('contact');
-            showContent('contact');
-        });
-    }
-
-    // Back to Default
-    function goToDefault() {
-        document.querySelectorAll('.tool-content').forEach(content => {
-            content.style.display = 'none';
-            content.classList.remove('active');
-        });
-        const home = document.getElementById('home');
-        if (home) {
-            home.style.display = 'block';
-            setTimeout(() => home.classList.add('active'), 10);
-        }
-    }
-
-    // Show Specific Content in Settings
-    function showContent(section) {
-        logUsage(section);
-        document.querySelectorAll('.tool-content').forEach(content => {
-            content.style.display = 'none';
-            content.classList.remove('active');
-        });
-        const target = document.getElementById(section);
-        if (target) {
-            target.style.display = 'block';
-            setTimeout(() => target.classList.add('active'), 10);
-        } else {
-            console.error(`Section ${section} tidak ditemukan!`);
-        }
-    }
-
-    // Usage Logging
-    function logUsage(tool) {
-        const usage = JSON.parse(localStorage.getItem('usage') || '{}');
-        usage[tool] = (usage[tool] || 0) + 1;
-        localStorage.setItem('usage', JSON.stringify(usage));
-        console.log(`Tool ${tool} digunakan ${usage[tool]} kali.`);
-    }
-
-    // Fungsi-fungsi lain (calculateAge, calculateBMI, dll.) tetap sama seperti sebelumnya
-    // Hanya tambahkan penanganan error sederhana di setiap fungsi
-    function calculateAge() {
-        showLoading();
-        const birthdate = document.getElementById('birthdate')?.value;
-        const ageError = document.getElementById('ageError');
-        if (!birthdate) {
-            if (ageError) ageError.innerText = 'Silakan pilih tanggal lahir!';
-            if (document.getElementById('birthdate')) document.getElementById('birthdate').focus();
-            hideLoading();
-            return;
-        }
-        // ... (logika lain tetap sama)
-    }
-
-    function calculateBMI() {
-        showLoading();
-        const weight = parseFloat(document.getElementById('weight')?.value) || 0;
-        const height = parseFloat(document.getElementById('height')?.value) || 0;
-        const bmiError = document.getElementById('bmiError');
-        if (isNaN(weight) || isNaN(height)) {
-            if (bmiError) bmiError.innerText = 'Masukkan angka yang valid!';
-            if (isNaN(weight) && document.getElementById('weight')) document.getElementById('weight').focus();
-            else if (document.getElementById('height')) document.getElementById('height').focus();
-            hideLoading();
-            return;
-        }
-        // ... (logika lain tetap sama)
-    }
-
-    // ... (fungsi lain seperti generateQR, generatePassword, dll. tambahkan penanganan serupa)
-
-    // Logout Function
     const logoutBtn = document.querySelector('.logout-btn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
             if (confirm('Yakin logout?')) {
                 localStorage.clear();
                 alert('Logout berhasil!');
-                goToDefault();
+                document.querySelectorAll('.tool-content').forEach(content => {
+                    content.style.display = 'none';
+                    content.classList.remove('active');
+                });
+                document.getElementById('home').style.display = 'block';
+                setTimeout(() => document.getElementById('home').classList.add('active'), 10);
             }
         });
     }
 
-    // Loading Functions
     function showLoading() {
         const loading = document.getElementById('loading');
         if (loading) loading.classList.add('active');
@@ -165,6 +53,228 @@ document.addEventListener('DOMContentLoaded', () => {
         const loading = document.getElementById('loading');
         if (loading) loading.classList.remove('active');
     }
-});
 
-// Fungsi lain (updateLanguage, saveSettings, dll.) tetap sama seperti sebelumnya
+    function generateQR() {
+        showLoading();
+        const qrInput = document.getElementById('qrInput')?.value.trim();
+        const qrError = document.getElementById('qrError');
+        const qrCode = document.getElementById('qrCode');
+        const downloadQR = document.getElementById('downloadQR');
+        if (!qrInput) {
+            if (qrError) qrError.innerText = 'Masukkan URL atau teks!';
+            hideLoading();
+            return;
+        }
+        if (qrError) qrError.innerText = '';
+        if (qrCode) qrCode.innerHTML = '';
+        new QRCode(qrCode, {
+            text: qrInput,
+            width: 200,
+            height: 200
+        });
+        if (downloadQR) {
+            downloadQR.style.display = 'block';
+            downloadQR.onclick = () => {
+                const img = qrCode.getElementsByTagName('img')[0];
+                const link = document.createElement('a');
+                link.href = img.src;
+                link.download = 'qrcode.png';
+                link.click();
+            };
+        }
+        hideLoading();
+    }
+
+    function generatePassword() {
+        showLoading();
+        const passLength = parseInt(document.getElementById('passLength')?.value) || 12;
+        const passwordResult = document.getElementById('passwordResult');
+        if (passLength < 8 || passLength > 20) {
+            if (passwordResult) passwordResult.innerText = 'Panjang harus 8-20!';
+            hideLoading();
+            return;
+        }
+        const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+        let password = "";
+        for (let i = 0; i < passLength; i++) {
+            password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        if (passwordResult) passwordResult.innerText = `Password: ${password}`;
+        hideLoading();
+    }
+
+    let timerInterval;
+    function startTimer() {
+        showLoading();
+        const hours = parseInt(document.getElementById('hours')?.value) || 0;
+        const minutes = parseInt(document.getElementById('minutes')?.value) || 0;
+        const seconds = parseInt(document.getElementById('seconds')?.value) || 0;
+        const timerError = document.getElementById('timerError');
+        const timerDisplay = document.getElementById('timerDisplay');
+        if (hours < 0 || minutes > 59 || seconds > 59) {
+            if (timerError) timerError.innerText = 'Input tidak valid!';
+            hideLoading();
+            return;
+        }
+        if (timerError) timerError.innerText = '';
+        clearInterval(timerInterval);
+        let remaining = hours * 3600 + minutes * 60 + seconds;
+        timerInterval = setInterval(() => {
+            if (remaining <= 0) {
+                clearInterval(timerInterval);
+                if (timerDisplay) timerDisplay.innerText = "Selesai!";
+                alert('Timer selesai!');
+                return;
+            }
+            const h = Math.floor(remaining / 3600);
+            const m = Math.floor((remaining % 3600) / 60);
+            const s = remaining % 60;
+            if (timerDisplay) timerDisplay.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            remaining--;
+        }, 1000);
+        hideLoading();
+    }
+
+    function convertText(caseType) {
+        showLoading();
+        const textInput = document.getElementById('textInput')?.value.trim();
+        const textError = document.getElementById('textError');
+        const textResult = document.getElementById('textResult');
+        if (!textInput) {
+            if (textError) textError.innerText = 'Masukkan teks!';
+            hideLoading();
+            return;
+        }
+        if (textError) textError.innerText = '';
+        let result = '';
+        switch (caseType) {
+            case 'upper': result = textInput.toUpperCase(); break;
+            case 'lower': result = textInput.toLowerCase(); break;
+            case 'capitalize':
+                result = textInput.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+                break;
+        }
+        if (textResult) textResult.innerText = result;
+        hideLoading();
+    }
+
+    const exchangeRates = { USD: { IDR: 14500 }, IDR: { USD: 1/14500 } };
+    function convertCurrency() {
+        showLoading();
+        const amount = parseFloat(document.getElementById('amount')?.value) || 0;
+        const from = document.getElementById('fromCurrency')?.value;
+        const to = document.getElementById('toCurrency')?.value;
+        const currencyError = document.getElementById('currencyError');
+        const currencyResult = document.getElementById('currencyResult');
+        if (amount < 0) {
+            if (currencyError) currencyError.innerText = 'Jumlah tidak valid!';
+            hideLoading();
+            return;
+        }
+        if (currencyError) currencyError.innerText = '';
+        const rate = exchangeRates[from][to] || 1;
+        if (currencyResult) currencyResult.innerText = `${amount.toFixed(2)} ${from} = ${(amount * rate).toFixed(2)} ${to}`;
+        hideLoading();
+    }
+
+    function calculateAge() {
+        showLoading();
+        const birthdate = document.getElementById('birthdate')?.value;
+        const ageError = document.getElementById('ageError');
+        const ageResult = document.getElementById('ageResult');
+        if (!birthdate) {
+            if (ageError) ageError.innerText = 'Pilih tanggal lahir!';
+            hideLoading();
+            return;
+        }
+        const today = new Date();
+        const birth = new Date(birthdate);
+        let age = today.getFullYear() - birth.getFullYear();
+        const monthDiff = today.getMonth() - birth.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) age--;
+        if (ageError) ageError.innerText = '';
+        if (ageResult) ageResult.innerText = `Usia: ${age} tahun`;
+        hideLoading();
+    }
+
+    function calculateBMI() {
+        showLoading();
+        const weight = parseFloat(document.getElementById('weight')?.value) || 0;
+        const height = parseFloat(document.getElementById('height')?.value) || 0;
+        const bmiError = document.getElementById('bmiError');
+        const bmiResult = document.getElementById('bmiResult');
+        if (weight < 1 || height < 10) {
+            if (bmiError) bmiError.innerText = 'Input tidak valid!';
+            hideLoading();
+            return;
+        }
+        const bmi = weight / ((height / 100) * (height / 100));
+        if (bmiError) bmiError.innerText = '';
+        if (bmiResult) bmiResult.innerText = `BMI: ${bmi.toFixed(2)}`;
+        hideLoading();
+    }
+
+    let galleryItems = JSON.parse(localStorage.getItem('gallery') || '[]');
+    function saveToGallery(type, content) {
+        const item = { type, content, timestamp: new Date().toLocaleString() };
+        galleryItems.push(item);
+        localStorage.setItem('gallery', JSON.stringify(galleryItems));
+        updateGallery();
+        alert('Item disimpan ke galeri!');
+    }
+
+    function updateGallery() {
+        const galleryContent = document.querySelector('#gallery .gallery-content');
+        if (galleryContent) {
+            galleryContent.innerHTML = '';
+            galleryItems.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.innerHTML = `<p>${item.content} (${item.timestamp})</p><button onclick="deleteGallery(${index})">Hapus</button>`;
+                galleryContent.appendChild(div);
+            });
+        }
+    }
+
+    function deleteGallery(index) {
+        if (confirm('Yakin hapus item ini?')) {
+            galleryItems.splice(index, 1);
+            localStorage.setItem('gallery', JSON.stringify(galleryItems));
+            updateGallery();
+        }
+    }
+
+    let history = JSON.parse(localStorage.getItem('history') || '{}');
+    function saveHistory(tool, result) {
+        history[tool] = { result, timestamp: new Date().toLocaleString() };
+        localStorage.setItem('history', JSON.stringify(history));
+        updateHistory();
+    }
+
+    function updateHistory() {
+        const historyContent = document.getElementById('historyContent');
+        if (historyContent) {
+            historyContent.innerHTML = '';
+            for (let tool in history) {
+                const div = document.createElement('div');
+                div.innerHTML = `<p>${tool}: ${history[tool].result} (${history[tool].timestamp})</p>`;
+                historyContent.appendChild(div);
+            }
+        }
+    }
+
+    function saveSettings() {
+        const darkMode = document.getElementById('darkModePref')?.checked;
+        const language = document.getElementById('language')?.value || 'id';
+        if (darkMode !== undefined) {
+            document.body.classList.toggle('dark-mode', darkMode);
+            localStorage.setItem('darkMode', darkMode);
+        }
+        localStorage.setItem('language', language);
+        // Tambah logika update teks berdasarkan bahasa jika perlu
+    }
+
+    // Panggil update awal
+    updateGallery();
+    updateHistory();
+});
