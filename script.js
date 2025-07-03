@@ -31,7 +31,10 @@ window.onload = () => {
 document.querySelectorAll('.nav-btn, .nav-subbtn, .tool-item').forEach(button => {
     button.addEventListener('click', () => {
         logUsage(button.dataset.tool);
-        document.querySelectorAll('.tool-content').forEach(content => content.style.display = 'none');
+        document.querySelectorAll('.tool-content').forEach(content => {
+            content.style.display = 'none';
+            content.classList.remove('active');
+        });
         const target = document.getElementById(button.dataset.tool);
         target.style.display = 'block';
         setTimeout(() => target.classList.add('active'), 10);
@@ -51,14 +54,11 @@ document.querySelectorAll('.nav-btn, .nav-subbtn, .tool-item').forEach(button =>
     });
 });
 
-// Contact Icon
+// Contact Icon (dihandle di navigasi biasa, tidak perlu terpisah)
 document.querySelector('.contact-icon').addEventListener('click', (e) => {
     e.preventDefault();
     logUsage('contact');
-    document.querySelectorAll('.tool-content').forEach(content => content.style.display = 'none');
-    const target = document.getElementById('contact');
-    target.style.display = 'block';
-    setTimeout(() => target.classList.add('active'), 10);
+    showContent('contact');
 });
 
 // Back to Default
@@ -69,6 +69,18 @@ function goToDefault() {
     });
     document.getElementById('home').style.display = 'block';
     setTimeout(() => document.getElementById('home').classList.add('active'), 10);
+}
+
+// Show Specific Content in Settings
+function showContent(section) {
+    logUsage(section);
+    document.querySelectorAll('.tool-content').forEach(content => {
+        content.style.display = 'none';
+        content.classList.remove('active');
+    });
+    const target = document.getElementById(section);
+    target.style.display = 'block';
+    setTimeout(() => target.classList.add('active'), 10);
 }
 
 // Usage Logging
@@ -389,7 +401,7 @@ document.querySelector('.chat-send').addEventListener('click', () => {
     if (message) {
         chatMessages.innerHTML += `<p><strong>Kamu:</strong> ${message}</p>`;
         if (message === 'bantuan') {
-            chatMessages.innerHTML += `<p><strong>Bot:</strong> Cek <a href="#" data-tool="help">Bantuan</a> untuk panduan!</p>`;
+            chatMessages.innerHTML += `<p><strong>Bot:</strong> Cek <a href="#" onclick="showContent('help')">Bantuan</a> untuk panduan!</p>`;
         } else if (message === 'kontak') {
             chatMessages.innerHTML += `<p><strong>Bot:</strong> Hubungi <a href="mailto:vin.nesia.id@gmail.com">email</a> atau <a href="https://wa.me/62895354511777">WhatsApp</a>.</p>`;
         } else if (message.includes('penting')) {
@@ -503,9 +515,7 @@ function updateLanguage() {
     });
     document.getElementById('home-title').innerText = translations[lang].welcome;
     document.getElementById('footer-about').innerText = translations[lang].about;
-    document.getElementById('footer-services').innerText = translations[lang].terms;
-    document.getElementById('footer-contact').innerText = translations[lang].contact;
-    document.querySelectorAll('.tool-item, .nav-subbtn').forEach(btn => {
+    document.querySelectorAll('.nav-btn').forEach(btn => {
         const tool = btn.dataset.tool;
         btn.innerText = translations[lang][tool] || btn.innerText;
         if (btn.firstChild && btn.firstChild.tagName === 'I') {
@@ -513,6 +523,11 @@ function updateLanguage() {
             btn.prepend(btn.firstChild);
         }
     });
+    // Update footer links
+    const footerLinks = document.querySelectorAll('footer a');
+    footerLinks[1].innerText = translations[lang].terms;
+    footerLinks[2].innerText = translations[lang].privacy;
+    footerLinks[3].innerText = translations[lang].contact;
 }
 
 function saveSettings() {
@@ -670,6 +685,15 @@ function toggleLike(tool) {
     localStorage.setItem('likes', JSON.stringify(likes));
     document.getElementById(`like-${tool}`).innerText = `Like ${likes[tool] ? '✓' : ''} (${Object.values(likes).filter(l => l).length})`;
 }
+
+// Logout Function
+document.querySelector('.logout-btn').addEventListener('click', () => {
+    if (confirm('Yakin logout?')) {
+        localStorage.clear();
+        alert('Logout berhasil!');
+        goToDefault();
+    }
+});
 
 // Loading Functions
 function showLoading() {
