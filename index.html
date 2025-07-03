@@ -17,72 +17,50 @@
         <h2 class="logo">Secz Tools</h2>
         <nav>
             <button class="nav-btn" data-tool="home"><i class="fas fa-home"></i> Home</button>
-            <button class="nav-btn" data-tool="age-bmi"><i class="fas fa-calculator"></i> Kalkulator Umur & BMI</button>
-            <button class="nav-btn" data-tool="qrcode"><i class="fas fa-qrcode"></i> QR Code Generator</button>
-            <button class="nav-btn" data-tool="password"><i class="fas fa-lock"></i> Password Generator</button>
-            <button class="nav-btn" data-tool="timer"><i class="fas fa-clock"></i> Countdown Timer</button>
-            <button class="nav-btn" data-tool="textcase"><i class="fas fa-text-height"></i> Text Case Converter</button>
-            <button class="nav-btn" data-tool="currency"><i class="fas fa-exchange-alt"></i> Currency Converter</button>
-            <button class="nav-btn" data-tool="tips"><i class="fas fa-lightbulb"></i> Tips & Trik</button>
-            <button class="nav-btn" data-tool="gallery"><i class="fas fa-images"></i> Galeri</button>
             <button class="nav-btn" data-tool="settings"><i class="fas fa-cog"></i> Pengaturan</button>
+            <button class="nav-btn" data-tool="gallery"><i class="fas fa-images"></i> Galeri</button>
             <button class="nav-btn" data-tool="history"><i class="fas fa-history"></i> Riwayat</button>
-            <button class="nav-btn" data-tool="bookmarks"><i class="fas fa-star"></i> Favorit</button>
+            <button class="nav-btn" data-tool="about"><i class="fas fa-info"></i> Tentang Kami</button>
         </nav>
         <button class="theme-toggle"><i class="fas fa-adjust"></i> Tema</button>
     </div>
     <div class="main-content">
         <div id="loading" class="loading">Loading...</div>
         <div id="home" class="tool-content">
-            <h2 id="home-title">Selamat Datang di Secz Tools!</h2>
-            <div class="tool-grid" id="homeGrid"></div>
-            <button class="back-btn" onclick="goToDefault()">Lihat Semua Tools</button>
-        </div>
-        <div id="age-bmi" class="tool-content">
-            <h2 id="age-bmi-title">Kalkulator Umur & BMI</h2>
-            <div class="tool-section">
-                <label for="birthdate">Tanggal Lahir:</label>
-                <input type="date" id="birthdate">
-                <p id="ageError" class="error"></p>
-                <button onclick="calculateAge()">Hitung Usia</button>
-                <p id="ageResult"></p>
-                <label for="weight">Berat (kg):</label>
-                <input type="number" id="weight" min="1" max="500" step="0.1">
-                <label for="height">Tinggi (cm):</label>
-                <input type="number" id="height" min="10" max="300" step="0.1">
-                <p id="bmiError" class="error"></p>
-                <button onclick="calculateBMI()">Hitung BMI</button>
-                <p id="bmiResult"></p>
-                <button id="saveAgeBMI" onclick="saveToGallery('age-bmi', document.getElementById('ageResult').innerText + ', ' + document.getElementById('bmiResult').innerText)">Simpan</button>
-                <button id="like-age-bmi" onclick="toggleLike('age-bmi')">Like <span>0</span></button>
+            <h2>Selamat Datang di Secz Tools!</h2>
+            <div class="tool-grid">
+                <div class="tool-item" data-tool="qrcode"><i class="fas fa-qrcode"></i> QR Code Generator</div>
+                <div class="tool-item" data-tool="password"><i class="fas fa-lock"></i> Password Generator</div>
+                <div class="tool-item" data-tool="timer"><i class="fas fa-clock"></i> Countdown Timer</div>
+                <div class="tool-item" data-tool="textcase"><i class="fas fa-text-height"></i> Text Case Converter</div>
+                <div class="tool-item" data-tool="currency"><i class="fas fa-exchange-alt"></i> Currency Converter</div>
+                <div class="tool-item" data-tool="age-bmi"><i class="fas fa-calculator"></i> Kalkulator Umur & BMI</div>
             </div>
         </div>
-        <!-- Konten lainnya tetap sama hingga settings -->
         <div id="qrcode" class="tool-content">
-            <h2 id="qrcode-title">QR Code Generator</h2>
+            <h2>QR Code Generator</h2>
             <div class="tool-section">
                 <label for="qrInput">Masukkan URL atau Teks:</label>
                 <input type="text" id="qrInput">
                 <p id="qrError" class="error"></p>
-                <p id="qrSuccess"></p>
                 <button onclick="generateQR()">Generate QR</button>
                 <div id="qrCode"></div>
                 <button id="downloadQR" style="display: none;">Unduh QR</button>
-                <button id="saveQRBtn" onclick="saveToGallery('qrcode', document.getElementById('qrInput').value)" style="display: none;">Simpan</button>
+                <button id="saveQR" onclick="saveToGallery('qrcode', document.getElementById('qrInput').value)">Simpan</button>
             </div>
         </div>
         <div id="password" class="tool-content">
-            <h2 id="password-title">Password Generator</h2>
+            <h2>Password Generator</h2>
             <div class="tool-section">
                 <label for="passLength">Panjang Password:</label>
                 <input type="number" id="passLength" min="8" max="20" value="12">
                 <p id="passwordResult"></p>
                 <button onclick="generatePassword()">Generate</button>
-                <button id="savePassBtn" onclick="saveToGallery('password', document.getElementById('passwordResult').innerText)" style="display: none;">Simpan</button>
+                <button id="savePass" onclick="saveToGallery('password', document.getElementById('passwordResult').innerText)">Simpan</button>
             </div>
         </div>
         <div id="timer" class="tool-content">
-            <h2 id="timer-title">Countdown Timer</h2>
+            <h2>Countdown Timer</h2>
             <div class="tool-section">
                 <label for="hours">Jam:</label>
                 <input type="number" id="hours" min="0" max="99" value="0">
@@ -93,12 +71,11 @@
                 <p id="timerError" class="error"></p>
                 <button onclick="startTimer()">Mulai</button>
                 <p id="timerDisplay">00:00:00</p>
-                <div id="timerProgress" class="progress-bar"></div>
-                <button id="saveTimerBtn" onclick="saveToGallery('timer', document.getElementById('timerDisplay').innerText)" style="display: none;">Simpan</button>
+                <button id="saveTimer" onclick="saveToGallery('timer', document.getElementById('timerDisplay').innerText)">Simpan</button>
             </div>
         </div>
         <div id="textcase" class="tool-content">
-            <h2 id="textcase-title">Text Case Converter</h2>
+            <h2>Text Case Converter</h2>
             <div class="tool-section">
                 <label for="textInput">Teks:</label>
                 <input type="text" id="textInput">
@@ -107,11 +84,11 @@
                 <button onclick="convertText('lower')">Lowercase</button>
                 <button onclick="convertText('capitalize')">Capitalize</button>
                 <p id="textResult"></p>
-                <button id="saveTextBtn" onclick="saveToGallery('textcase', document.getElementById('textResult').innerText)" style="display: none;">Simpan</button>
+                <button id="saveText" onclick="saveToGallery('textcase', document.getElementById('textResult').innerText)">Simpan</button>
             </div>
         </div>
         <div id="currency" class="tool-content">
-            <h2 id="currency-title">Currency Converter</h2>
+            <h2>Currency Converter</h2>
             <div class="tool-section">
                 <label for="amount">Jumlah:</label>
                 <input type="number" id="amount" min="0" max="1000000" step="0.01" value="0">
@@ -128,19 +105,29 @@
                 <p id="currencyError" class="error"></p>
                 <button onclick="convertCurrency()">Konversi</button>
                 <p id="currencyResult"></p>
-                <button id="saveCurrencyBtn" onclick="saveToGallery('currency', document.getElementById('currencyResult').innerText)" style="display: none;">Simpan</button>
+                <button id="saveCurrency" onclick="saveToGallery('currency', document.getElementById('currencyResult').innerText)">Simpan</button>
             </div>
         </div>
-        <div id="tips" class="tool-content">
-            <h2 id="tips-title">Tips & Trik</h2>
-            <div class="tips-content"></div>
-        </div>
-        <div id="gallery" class="tool-content">
-            <h2 id="gallery-title">Galeri</h2>
-            <div class="gallery-content"></div>
+        <div id="age-bmi" class="tool-content">
+            <h2>Kalkulator Umur & BMI</h2>
+            <div class="tool-section">
+                <label for="birthdate">Tanggal Lahir:</label>
+                <input type="date" id="birthdate">
+                <p id="ageError" class="error"></p>
+                <button onclick="calculateAge()">Hitung Usia</button>
+                <p id="ageResult"></p>
+                <label for="weight">Berat (kg):</label>
+                <input type="number" id="weight" min="1" max="500" step="0.1">
+                <label for="height">Tinggi (cm):</label>
+                <input type="number" id="height" min="10" max="300" step="0.1">
+                <p id="bmiError" class="error"></p>
+                <button onclick="calculateBMI()">Hitung BMI</button>
+                <p id="bmiResult"></p>
+                <button id="saveAgeBMI" onclick="saveToGallery('age-bmi', document.getElementById('ageResult').innerText + ', ' + document.getElementById('bmiResult').innerText)">Simpan</button>
+            </div>
         </div>
         <div id="settings" class="tool-content">
-            <h2 id="settings-title">Pengaturan</h2>
+            <h2>Pengaturan</h2>
             <div class="tool-section">
                 <label for="darkModePref">Dark Mode:</label>
                 <input type="checkbox" id="darkModePref">
@@ -149,75 +136,23 @@
                     <option value="id">Indonesia</option>
                     <option value="en">English</option>
                 </select>
-                <label for="themeColor">Warna Tema:</label>
-                <input type="color" id="themeColor" value="#007bff">
                 <button onclick="saveSettings()">Simpan</button>
-                <button onclick="resetSettings()">Reset</button>
-                <p id="settingsResult"></p>
-                <h3>Informasi & Dukungan</h3>
-                <ul class="settings-links">
-                    <li><a href="#terms" onclick="showContent('terms')">Syarat & Ketentuan</a></li>
-                    <li><a href="#privacy" onclick="showContent('privacy')">Kebijakan Privasi</a></li>
-                    <li><a href="#help" onclick="showContent('help')">Bantuan</a></li>
-                    <li><a href="#contact" onclick="showContent('contact')">Hubungi Kami</a></li>
-                    <li><a href="#faq" onclick="showContent('faq')">FAQ</a></li>
-                </ul>
             </div>
         </div>
+        <div id="gallery" class="tool-content">
+            <h2>Galeri</h2>
+            <div class="gallery-content"></div>
+        </div>
         <div id="history" class="tool-content">
-            <h2 id="history-title">Riwayat Terakhir</h2>
+            <h2>Riwayat</h2>
             <div id="historyContent"></div>
         </div>
-        <div id="bookmarks" class="tool-content">
-            <h2 id="bookmarks-title">Favorit</h2>
-            <div id="homeGrid"></div>
-            <button class="back-btn" onclick="goToDefault()">Lihat Semua Tools</button>
-        </div>
-        <div id="faq" class="tool-content">
-            <h2 id="faq-title">Pertanyaan Umum (FAQ)</h2>
-            <p>FAQ akan diisi nanti...</p>
-        </div>
         <div id="about" class="tool-content">
-            <h2 id="about-title">Tentang Kami</h2>
-            <p>Secz Tools dibuat untuk membantu pengguna dengan berbagai alat praktis.</p>
-        </div>
-        <div id="terms" class="tool-content">
-            <h2 id="terms-title">Syarat & Ketentuan</h2>
-            <p>Syarat akan diisi nanti...</p>
-        </div>
-        <div id="privacy" class="tool-content">
-            <h2 id="privacy-title">Kebijakan Privasi</h2>
-            <p>Kebijakan akan diisi nanti...</p>
-        </div>
-        <div id="help" class="tool-content">
-            <h2 id="help-title">Bantuan</h2>
-            <p>Bantuan akan diisi nanti...</p>
-        </div>
-        <div id="contact" class="tool-content">
-            <h2 id="contact-title">Hubungi Kami</h2>
-            <form>
-                <label for="name">Nama:</label>
-                <input type="text" id="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" required>
-                <label for="message">Pesan:</label>
-                <textarea id="message" required></textarea>
-                <p id="captchaQuestion"></p>
-                <input type="number" id="captchaInput" required>
-                <button type="submit">Kirim</button>
-            </form>
-        </div>
-        <div class="chat-box">
-            <button class="chat-toggle">Chat</button>
-            <div class="chat-messages"></div>
-            <input type="text" class="chat-input" placeholder="Ketik pesan...">
-            <button class="chat-send">Kirim</button>
+            <h2>Tentang Kami</h2>
+            <p>Secz Tools dibuat untuk membantu pengguna dengan alat praktis.</p>
         </div>
     </div>
     <footer>
-        <div class="footer-links">
-            <a href="#about">Tentang Kami</a> | <a href="#settings" onclick="showContent('terms')">Syarat & Ketentuan</a> | <a href="#settings" onclick="showContent('privacy')">Kebijakan Privasi</a> | <a href="#settings" onclick="showContent('contact')">Kontak</a>
-        </div>
         <p>© 2025 Secz Tools. All rights reserved.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
