@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secz Tools</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -11,7 +11,6 @@
     <header>
         <img src="logo.png" alt="Secz Tools Logo" class="logo">
         <h1>Secz Tools</h1>
-        <button id="modeToggle">Toggle Light/Dark</button>
     </header>
     <nav>
         <button class="nav-btn" data-tool="age-bmi">Kalkulator</button>
@@ -72,9 +71,11 @@
             <h2>Text Case Converter</h2>
             <div class="input-group">
                 <textarea id="textInput" placeholder="Masukkan teks"></textarea>
-                <button onclick="convertText('upper')">Huruf Besar</button>
-                <button onclick="convertText('lower')">Huruf Kecil</button>
-                <button onclick="convertText('capitalize')">Kata Besar</button>
+                <div class="button-group">
+                    <button onclick="convertText('upper')">Huruf Besar</button>
+                    <button onclick="convertText('lower')">Huruf Kecil</button>
+                    <button onclick="convertText('capitalize')">Kata Besar</button>
+                </div>
                 <p id="textResult"></p>
             </div>
         </div>
