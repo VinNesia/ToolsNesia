@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secz Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -11,14 +12,15 @@
     <header>
         <img src="logo.png" alt="Secz Tools Logo" class="logo">
         <h1>Secz Tools</h1>
+        <button id="themeToggle">Toggle Tema</button>
     </header>
     <nav>
-        <button class="nav-btn" data-tool="age-bmi">Kalkulator</button>
-        <button class="nav-btn" data-tool="qrcode">QR Code</button>
-        <button class="nav-btn" data-tool="password">Password</button>
-        <button class="nav-btn" data-tool="timer">Timer</button>
-        <button class="nav-btn" data-tool="textcase">Text Converter</button>
-        <button class="nav-btn" data-tool="currency">Currency Converter</button>
+        <button class="nav-btn" data-tool="age-bmi"><i class="fas fa-calculator"></i> Kalkulator</button>
+        <button class="nav-btn" data-tool="qrcode"><i class="fas fa-qrcode"></i> QR Code</button>
+        <button class="nav-btn" data-tool="password"><i class="fas fa-lock"></i> Password</button>
+        <button class="nav-btn" data-tool="timer"><i class="fas fa-clock"></i> Timer</button>
+        <button class="nav-btn" data-tool="textcase"><i class="fas fa-text-height"></i> Text Converter</button>
+        <button class="nav-btn" data-tool="currency"><i class="fas fa-exchange-alt"></i> Currency Converter</button>
     </nav>
     <main id="toolArea">
         <div class="tool-content" id="default">
@@ -32,30 +34,36 @@
                 <input type="date" id="birthdate">
                 <button onclick="calculateAge()">Hitung Usia</button>
                 <p id="ageResult"></p>
+                <p id="ageError" class="error"></p>
             </div>
             <div class="input-group">
                 <label>Berat (kg):</label>
-                <input type="number" id="weight">
+                <input type="number" id="weight" min="0">
                 <label>Tinggi (cm):</label>
-                <input type="number" id="height">
+                <input type="number" id="height" min="0">
                 <button onclick="calculateBMI()">Hitung BMI</button>
                 <p id="bmiResult"></p>
+                <p id="bmiError" class="error"></p>
             </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="qrcode" style="display:none;">
             <h2>QR Code Generator</h2>
             <div class="input-group">
                 <input type="text" id="qrInput" placeholder="Masukkan URL atau Teks">
-                <button onclick="generateQR()">Buat QR</button>
+                <button onclick="generateQR()"><span class="spinner" id="qrSpinner"></span>Buat QR</button>
                 <div id="qrCode"></div>
+                <p id="qrError" class="error"></p>
             </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="password" style="display:none;">
             <h2>Password Generator</h2>
             <div class="input-group">
-                <button onclick="generatePassword()">Buat Password</button>
+                <button onclick="generatePassword()"><span class="spinner" id="passSpinner"></span>Buat Password</button>
                 <p id="passwordResult"></p>
             </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="timer" style="display:none;">
             <h2>Countdown Timer</h2>
@@ -63,26 +71,30 @@
                 <input type="number" id="hours" placeholder="Jam" min="0">
                 <input type="number" id="minutes" placeholder="Menit" min="0">
                 <input type="number" id="seconds" placeholder="Detik" min="0">
-                <button onclick="startTimer()">Mulai</button>
+                <button onclick="startTimer()"><span class="spinner" id="timerSpinner"></span>Mulai</button>
                 <p id="timerDisplay"></p>
+                <p id="timerError" class="error"></p>
             </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="textcase" style="display:none;">
             <h2>Text Case Converter</h2>
             <div class="input-group">
                 <textarea id="textInput" placeholder="Masukkan teks"></textarea>
                 <div class="button-group">
-                    <button onclick="convertText('upper')">Huruf Besar</button>
-                    <button onclick="convertText('lower')">Huruf Kecil</button>
-                    <button onclick="convertText('capitalize')">Kata Besar</button>
+                    <button onclick="convertText('upper')"><span class="spinner" id="textUpperSpinner"></span>Huruf Besar</button>
+                    <button onclick="convertText('lower')"><span class="spinner" id="textLowerSpinner"></span>Huruf Kecil</button>
+                    <button onclick="convertText('capitalize')"><span class="spinner" id="textCapitalSpinner"></span>Kata Besar</button>
                 </div>
                 <p id="textResult"></p>
+                <p id="textError" class="error"></p>
             </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
         <div class="tool-content" id="currency" style="display:none;">
             <h2>Currency Converter</h2>
             <div class="input-group">
-                <input type="number" id="amount" placeholder="Jumlah">
+                <input type="number" id="amount" placeholder="Jumlah" min="0">
                 <select id="fromCurrency">
                     <option value="USD">USD</option>
                     <option value="IDR">IDR</option>
@@ -91,11 +103,16 @@
                     <option value="IDR">IDR</option>
                     <option value="USD">USD</option>
                 </select>
-                <button onclick="convertCurrency()">Konversi</button>
+                <button onclick="convertCurrency()"><span class="spinner" id="currencySpinner"></span>Konversi</button>
                 <p id="currencyResult"></p>
+                <p id="currencyError" class="error"></p>
             </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
     </main>
+    <footer>
+        <p>&copy; 2025 Secz Tools. Dibuat dengan ❤️ oleh Vin. Hubungi: <a href="mailto:vinnesia@example.com">vinnesia@example.com</a></p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
     <script src="script.js"></script>
 </body>
