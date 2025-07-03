@@ -6,15 +6,14 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    background-attachment: fixed;
     min-height: 100vh;
-    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 10px 20px;
     background: #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -26,6 +25,7 @@ header {
 .logo {
     font-size: 1.5em;
     font-weight: 700;
+    color: #2c3e50;
 }
 
 .logout-btn {
@@ -46,7 +46,6 @@ header {
     background: #2c3e50;
     color: #ecf0f1;
     padding: 20px 0;
-    transition: width 0.3s;
     overflow-y: auto;
 }
 
@@ -68,7 +67,7 @@ header {
     font-size: 1em;
 }
 
-.sidebar .nav-btn:hover, .sidebar .nav-btn:focus {
+.sidebar .nav-btn:hover {
     background: #34495e;
 }
 
@@ -88,11 +87,16 @@ header {
 .main-content {
     margin-left: 250px;
     padding: 20px;
-    min-height: 100vh;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .tool-content {
     display: none;
+    width: 80%;
+    max-width: 800px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -102,6 +106,29 @@ header {
 
 .tool-content.active {
     display: block;
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 600px;
+}
+
+.tool-item {
+    background: #fff;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.tool-item:hover {
+    transform: scale(1.05);
 }
 
 .tool-section {
@@ -114,13 +141,12 @@ header {
     font-weight: 500;
 }
 
-.tool-section input, .tool-section select, .tool-section textarea {
+.tool-section input, .tool-section select {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
 }
 
 .tool-section button {
@@ -139,68 +165,6 @@ header {
 .error {
     color: #e74c3c;
     margin: 5px 0;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background: #ddd;
-    margin-top: 10px;
-}
-
-#timerProgress {
-    width: 100%;
-    height: 10px;
-    background: var(--theme-color);
-    transition: width 1s linear;
-}
-
-.gallery-content, .tips-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.gallery-item, .tip-item {
-    background: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.chat-box {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    display: none;
-}
-
-.chat-box.active {
-    display: block;
-}
-
-.chat-messages {
-    height: 200px;
-    overflow-y: auto;
-    padding: 10px;
-}
-
-.chat-input {
-    width: 70%;
-    padding: 5px;
-}
-
-.chat-send {
-    padding: 5px 10px;
-    background: var(--theme-color);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
 .loading {
@@ -224,12 +188,12 @@ header {
     color: #ecf0f1;
 }
 
-.dark-mode .tool-content, .dark-mode .nav-btn, .dark-mode .tool-item {
+.dark-mode .tool-content {
     background: rgba(44, 62, 80, 0.95);
     color: #ecf0f1;
 }
 
-.dark-mode input, .dark-mode select, .dark-mode textarea {
+.dark-mode input, .dark-mode select {
     background: #333;
     color: #e0e0e0;
     border-color: #555;
@@ -239,22 +203,17 @@ header {
     color: #e0e0e0;
 }
 
-.settings-links {
-    list-style: none;
-    padding: 0;
+.gallery-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.settings-links li {
-    margin: 10px 0;
-}
-
-.settings-links a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.settings-links a:hover {
-    text-decoration: underline;
+.gallery-item {
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 footer {
@@ -262,19 +221,8 @@ footer {
     padding: 10px;
     background: #2c3e50;
     color: #ecf0f1;
-    position: relative;
-    bottom: 0;
     width: 100%;
     margin-left: -20px;
-}
-
-footer a {
-    color: #ecf0f1;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -291,7 +239,10 @@ footer a:hover {
     .main-content {
         margin-left: 0;
     }
-    .chat-box {
+    .tool-grid {
+        grid-template-columns: 1fr;
+    }
+    .tool-content {
         width: 90%;
     }
 }
