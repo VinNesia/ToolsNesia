@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id-ID">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secz Tools menyediakan alat praktis seperti kalkulator, QR Code, dan konverter untuk kebutuhan sehari-hari.">
+    <meta name="keywords" content="kalkulator, QR code, password generator, tools online">
+    <link rel="icon" type="image/png" href="favicon.png">
     <title>Secz Tools</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -10,9 +13,10 @@
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="Secz Tools Logo" class="logo">
+        <img src="logo.png" alt="Logo Secz Tools" class="logo">
         <h1>Secz Tools</h1>
         <button id="themeToggle">Toggle Tema</button>
+        <a href="#" class="contact-icon" data-tool="contact"><i class="fas fa-envelope"></i></a>
     </header>
     <nav>
         <button class="nav-btn" data-tool="age-bmi"><i class="fas fa-calculator"></i> Kalkulator</button>
@@ -21,6 +25,11 @@
         <button class="nav-btn" data-tool="timer"><i class="fas fa-clock"></i> Timer</button>
         <button class="nav-btn" data-tool="textcase"><i class="fas fa-text-height"></i> Text Converter</button>
         <button class="nav-btn" data-tool="currency"><i class="fas fa-exchange-alt"></i> Currency Converter</button>
+        <button class="nav-btn" data-tool="about"><i class="fas fa-info-circle"></i> Tentang Kami</button>
+        <button class="nav-btn" data-tool="terms"><i class="fas fa-file-contract"></i> Syarat & Ketentuan</button>
+        <button class="nav-btn" data-tool="privacy"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</button>
+        <button class="nav-btn" data-tool="help"><i class="fas fa-question-circle"></i> Bantuan</button>
+        <button class="nav-btn" data-tool="contact"><i class="fas fa-envelope"></i> Hubungi Kami</button>
     </nav>
     <main id="toolArea">
         <div class="tool-content" id="default">
@@ -109,10 +118,186 @@
             </div>
             <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
         </div>
+        <div class="tool-content" id="about" style="display:none;">
+            <h2>Tentang Kami</h2>
+            <div class="about-content">
+                <p>Selamat datang di <strong>Secz Tools</strong>, platform yang dirancang untuk menyediakan alat-alat praktis dan mudah digunakan untuk kebutuhan sehari-hari. Kami menawarkan berbagai fitur seperti kalkulator umur dan BMI, generator QR Code, pembuat password, countdown timer, konverter teks, dan konverter mata uang. Semua tools ini dibuat dengan tujuan mempermudah hidup Anda, baik untuk keperluan pribadi maupun profesional.</p>
+                <p>Kami adalah tim yang berdedikasi, dipimpin oleh Vin, yang mencintai teknologi dan inovasi. Secz Tools lahir dari keinginan untuk memberikan solusi sederhana namun efektif kepada pengguna di seluruh dunia. Dengan desain responsif, situs ini dapat diakses dengan nyaman dari handphone, tablet, maupun desktop.</p>
+                <p>Jika Anda memiliki saran atau pertanyaan, jangan ragu untuk menghubungi kami di <a href="mailto:vin.nesia.id@gmail.com">vin.nesia.id@gmail.com</a>. Terima kasih telah menggunakan Secz Tools—mari kita buat hari Anda lebih mudah!</p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="terms" style="display:none;">
+            <h2>Syarat & Ketentuan</h2>
+            <div class="terms-content">
+                <p>Selamat datang di Secz Tools! Dengan mengakses dan menggunakan situs ini, Anda setuju untuk mematuhi syarat dan ketentuan berikut:</p>
+                <ul>
+                    <li><strong>Penggunaan yang Sah:</strong> Anda hanya boleh menggunakan tools yang disediakan untuk keperluan pribadi dan legal. Penggunaan untuk aktivitas ilegal dilarang.</li>
+                    <li><strong>Tidak Ada Jaminan:</strong> Secz Tools disediakan "sebagaimana adanya" tanpa jaminan akurasi atau ketersediaan. Kami tidak bertanggung jawab atas kerugian yang mungkin terjadi.</li>
+                    <li><strong>Konten Pengguna:</strong> Anda bertanggung jawab atas data yang Anda masukkan (misalnya teks untuk QR Code atau password). Kami tidak menyimpan data tersebut.</li>
+                    <li><strong>Perubahan Ketentuan:</strong> Kami berhak mengubah syarat ini kapan saja. Perubahan akan diumumkan di halaman ini.</li>
+                    <li><strong>Pembatasan Usia:</strong> Pengguna harus berusia minimal 13 tahun untuk menggunakan situs ini.</li>
+                </ul>
+                <p>Dengan tetap menggunakan situs ini, Anda menyetujui ketentuan di atas. Jika tidak setuju, silakan tinggalkan situs ini.</p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="privacy" style="display:none;">
+            <h2>Kebijakan Privasi</h2>
+            <div class="privacy-content">
+                <p>Kami di Secz Tools sangat menghargai privasi Anda. Berikut adalah kebijakan privasi kami:</p>
+                <ul>
+                    <li><strong>Pengumpulan Data:</strong> Kami tidak mengumpulkan data pribadi apa pun secara langsung dari pengguna, termasuk nama, alamat, atau informasi sensitif lainnya.</li>
+                    <li><strong>Data Sementara:</strong> Data yang Anda masukkan (misalnya teks untuk QR Code atau kalkulasi) hanya diproses sementara dan tidak disimpan di server kami.</li>
+                    <li><strong>Cookies:</strong> Situs ini mungkin menggunakan cookies untuk meningkatkan pengalaman pengguna, tetapi tidak untuk pelacakan pribadi.</li>
+                    <li><strong>Pihak Ketiga:</strong> Kami tidak membagikan data Anda dengan pihak ketiga. Namun, kami menggunakan layanan eksternal (misalnya Font Awesome) yang mungkin memiliki kebijakan sendiri.</li>
+                    <li><strong>Keamanan:</strong> Kami berupaya menjaga keamanan situs, tetapi tidak dapat menjamin perlindungan 100% dari akses tidak sah.</li>
+                    <li><strong>Perubahan Kebijakan:</strong> Kebijakan ini dapat diperbarui. Perubahan akan diumumkan di halaman ini.</li>
+                </ul>
+                <p>Jika Anda memiliki pertanyaan tentang privasi Anda, hubungi kami di <a href="mailto:vin.nesia.id@gmail.com">vin.nesia.id@gmail.com</a>.</p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="help" style="display:none;">
+            <h2>Bantuan</h2>
+            <div class="help-content">
+                <h3>Cara Menggunakan Tools</h3>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <input type="checkbox" id="acc1">
+                        <label for="acc1">Kalkulator Umur & BMI</label>
+                        <div class="accordion-content">
+                            <ul>
+                                <li><strong>Langkah-langkah:</strong> Pilih tanggal lahir di kolom "Usia" dan klik "Hitung Usia" untuk melihat usia Anda. Untuk BMI, masukkan berat badan (kg) dan tinggi badan (cm), lalu klik "Hitung BMI".</li>
+                                <li><strong>Contoh:</strong> Jika tanggal lahir 01/01/2000, hasilnya akan menunjukkan usia Anda hari ini. Untuk BMI, masukkan 70 kg dan 170 cm, hasilnya sekitar 24.22.</li>
+                                <li><strong>Tips:</strong> Pastikan input valid (tidak negatif) agar tidak ada error.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <input type="checkbox" id="acc2">
+                        <label for="acc2">QR Code Generator</label>
+                        <div class="accordion-content">
+                            <ul>
+                                <li><strong>Langkah-langkah:</strong> Ketik URL (misalnya https://example.com) atau teks di kolom input, lalu klik "Buat QR" untuk menghasilkan kode QR.</li>
+                                <li><strong>Contoh:</strong> Masukkan "https://vinnesia.github.io", lalu klik tombol untuk melihat kode QR-nya.</li>
+                                <li><strong>Tips:</strong> Gunakan URL yang valid untuk hasil terbaik. Kode QR bisa discan dengan aplikasi kamera HP.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <input type="checkbox" id="acc3">
+                        <label for="acc3">Password Generator</label>
+                        <div class="accordion-content">
+                            <ul>
+                                <li><strong>Langkah-langkah:</strong> Klik tombol "Buat Password" untuk menghasilkan password acak berisi 12 karakter (huruf, angka, dan simbol).</li>
+                                <li><strong>Contoh:</strong> Hasil mungkin seperti "Kj9$mPq2@xL4".</li>
+                                <li><strong>Tips:</strong> Salin password segera setelah dibuat untuk keamanan.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <input type="checkbox" id="acc4">
+                        <label for="acc4">Countdown Timer</label>
+                        <div class="accordion-content">
+                            <ul>
+                                <li><strong>Langkah-langkah:</strong> Masukkan jam, menit, dan detik (misalnya 0, 0, 10 untuk 10 detik), lalu klik "Mulai" untuk memulai penghitung waktu.</li>
+                                <li><strong>Contoh:</strong> Set 0 jam, 1 menit, 0 detik, lalu klik "Mulai" untuk hitung mundur dari 1:00 ke 0:00.</li>
+                                <li><strong>Tips:</strong> Pastikan nilai tidak negatif, dan tekan "Kembali ke Beranda" untuk reset.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <input type="checkbox" id="acc5">
+                        <label for="acc5">Text Case Converter</label>
+                        <div class="accordion-content">
+                            <ul>
+                                <li><strong>Langkah-langkah:</strong> Ketik teks di area teks (misalnya "hello world"), lalu pilih "Huruf Besar", "Huruf Kecil", atau "Kata Besar" untuk mengubah format.</li>
+                                <li><strong>Contoh:</strong> "hello world" menjadi "HELLO WORLD" (Huruf Besar), "hello world" (Huruf Kecil), atau "Hello World" (Kata Besar).</li>
+                                <li><strong>Tips:</strong> Gunakan untuk format teks dokumen atau caption media sosial.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <input type="checkbox" id="acc6">
+                        <label for="acc6">Currency Converter</label>
+                        <div class="accordion-content">
+                            <ul>
+                                <li><strong>Langkah-langkah:</strong> Masukkan jumlah (misalnya 100), pilih mata uang asal (USD atau IDR) dan tujuan, lalu klik "Konversi".</li>
+                                <li><strong>Contoh:</strong> 100 USD ke IDR dengan rate 14,500 akan menghasilkan 1,450,000 IDR.</li>
+                                <li><strong>Tips:</strong> Rate adalah contoh (1 USD = 14,500 IDR), hasil hanya estimasi.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p>Jika ada masalah atau pertanyaan lebih lanjut, hubungi kami di <a href="mailto:vin.nesia.id@gmail.com">vin.nesia.id@gmail.com</a>, <a href="https://wa.me/62895354511777" target="_blank">+62 895-3545-11777</a>, atau ikuti kami di <a href="https://instagram.com/vin.nesia.id" target="_blank">Instagram</a>.</p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
+        <div class="tool-content" id="contact" style="display:none;">
+            <h2>Hubungi Kami</h2>
+            <div class="help-content">
+                <p>Kami siap membantu Anda! Silakan isi formulir di bawah ini atau hubungi kami langsung:</p>
+                <form>
+                    <label>Nama:</label><input type="text" name="name" required>
+                    <label>Email:</label><input type="email" name="email" required>
+                    <label>Pesan:</label><textarea name="message" required></textarea>
+                    <button type="submit">Kirim</button>
+                </form>
+                <p>
+                    <a href="mailto:vin.nesia.id@gmail.com">Kirim Email</a> | 
+                    <a href="https://wa.me/62895354511777" target="_blank">Chat via WhatsApp</a> | 
+                    <a href="https://instagram.com/vin.nesia.id" target="_blank">Ikuti Instagram</a>
+                </p>
+                <p>Jam Operasional: Senin-Jumat, 09:00-17:00 WIB</p>
+            </div>
+            <button class="back-btn" onclick="goToDefault()">Kembali ke Beranda</button>
+        </div>
     </main>
     <footer>
-        <p>&copy; 2025 Secz Tools. Dibuat dengan ❤️ oleh Vin. Hubungi: <a href="mailto:vinnesia@example.com">vinnesia@example.com</a></p>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Tentang Kami</h3>
+                <p>Secz Tools adalah platform alat praktis untuk kebutuhan sehari-hari, diciptakan oleh Vin untuk mempermudah hidup Anda.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Layanan</h3>
+                <ul>
+                    <li><a href="#" data-tool="about">Tentang Kami</a></li>
+                    <li><a href="#" data-tool="terms">Syarat & Ketentuan</a></li>
+                    <li><a href="#" data-tool="privacy">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>Email: <a href="mailto:vin.nesia.id@gmail.com">vin.nesia.id@gmail.com</a></p>
+                <p>Telp: <a href="tel:+62895354511777">+62 895-3545-11777</a> (Senin-Jumat, 09:00-17:00 WIB)</p>
+                <div class="social-icons">
+                    <a href="https://instagram.com/vin.nesia.id" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/62895354511777" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Secz Tools. All rights reserved.</p>
+        </div>
     </footer>
+    <div class="chat-box">
+        <button class="chat-toggle">Chat dengan Kami <i class="fas fa-comment"></i></button>
+        <div class="chat-content">
+            <div class="chat-messages">
+                <p><strong>Bot:</strong> Halo! Saya asisten virtual Secz Tools. Ada yang bisa saya bantu?</p>
+                <p><strong>Bot:</strong> - Ketik "bantuan" untuk panduan tool.</p>
+                <p><strong>Bot:</strong> - Ketik "kontak" untuk hubungi tim kami.</p>
+            </div>
+            <input type="text" class="chat-input" placeholder="Ketik pesan...">
+            <button class="chat-send">Kirim</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init('YOUR_USER_ID'); // Ganti dengan User ID dari EmailJS dashboard
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
     <script src="script.js"></script>
 </body>
