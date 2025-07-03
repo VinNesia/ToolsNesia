@@ -1,26 +1,18 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background: #1a1a1a;
-    color: #e0e0e0;
+    background: #ffffff; /* Latar belakang putih */
+    color: #000000; /* Teks hitam agar terlihat jelas */
     margin: 0;
     padding: 0;
     transition: all 0.3s ease;
-}
-
-body.light-mode {
-    background: #f0f0f0;
-    color: #333;
 }
 
 header {
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    background: #2a2a2a;
-}
-
-header.light-mode {
-    background: #fff;
+    background: #1e90ff; /* Biru tua seperti di screenshot */
+    color: #ffffff;
 }
 
 .logo {
@@ -37,6 +29,9 @@ h1 {
 #modeToggle {
     margin-left: auto;
     padding: 5px 10px;
+    background: #ff9900;
+    border: none;
+    color: #fff;
     cursor: pointer;
 }
 
@@ -45,32 +40,20 @@ nav {
     justify-content: center;
     gap: 10px;
     padding: 10px;
-    background: #333;
-}
-
-nav.light-mode {
-    background: #ddd;
+    background: #d3d3d3; /* Abu-abu muda untuk navigasi */
 }
 
 .nav-btn {
     padding: 10px 20px;
     border: none;
-    background: #444;
+    background: #1e90ff; /* Biru tua */
     color: #fff;
     cursor: pointer;
     transition: background 0.3s;
 }
 
 .nav-btn:hover {
-    background: #555;
-}
-
-.nav-btn.light-mode {
-    background: #bbb;
-}
-
-.nav-btn.light-mode:hover {
-    background: #aaa;
+    background: #104e8b; /* Biru lebih gelap saat hover */
 }
 
 main {
@@ -85,23 +68,46 @@ main {
     display: block;
 }
 
-input, button, textarea {
+.tool-content h2 {
+    color: #1e90ff; /* Judul biru tua */
+}
+
+input, select, textarea, button {
     margin: 5px;
     padding: 8px;
     font-size: 16px;
+    border: 1px solid #1e90ff;
+    background: #ffffff;
+    color: #000000;
 }
 
 button {
-    background: #ff9900;
+    background: #ff4500; /* Oranye untuk tombol */
     border: none;
     color: #fff;
     cursor: pointer;
 }
 
 button:hover {
-    background: #e68a00;
+    background: #ff6347; /* Oranye lebih terang saat hover */
 }
 
 #qrCode {
     margin-top: 10px;
+}
+
+/* Tambahan untuk form seperti di screenshot */
+.tool-content div {
+    background: #1e90ff; /* Biru tua untuk area input */
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.tool-content label {
+    color: #ffffff;
+}
+
+.tool-content p {
+    color: #ffffff;
 }
