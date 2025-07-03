@@ -18,8 +18,6 @@
         <nav>
             <button class="nav-btn" data-tool="home"><i class="fas fa-home"></i> Home</button>
             <button class="nav-btn" data-tool="settings"><i class="fas fa-cog"></i> Pengaturan</button>
-            <button class="nav-btn" data-tool="gallery"><i class="fas fa-images"></i> Galeri</button>
-            <button class="nav-btn" data-tool="history"><i class="fas fa-history"></i> Riwayat</button>
             <button class="nav-btn" data-tool="about"><i class="fas fa-info"></i> Tentang Kami</button>
         </nav>
         <button class="theme-toggle"><i class="fas fa-adjust"></i> Tema</button>
@@ -46,7 +44,6 @@
                 <button onclick="generateQR()">Generate QR</button>
                 <div id="qrCode"></div>
                 <button id="downloadQR" style="display: none;">Unduh QR</button>
-                <button id="saveQR" onclick="saveToGallery('qrcode', document.getElementById('qrInput').value)">Simpan</button>
             </div>
         </div>
         <div id="password" class="tool-content">
@@ -56,7 +53,6 @@
                 <input type="number" id="passLength" min="8" max="20" value="12">
                 <p id="passwordResult"></p>
                 <button onclick="generatePassword()">Generate</button>
-                <button id="savePass" onclick="saveToGallery('password', document.getElementById('passwordResult').innerText)">Simpan</button>
             </div>
         </div>
         <div id="timer" class="tool-content">
@@ -71,7 +67,6 @@
                 <p id="timerError" class="error"></p>
                 <button onclick="startTimer()">Mulai</button>
                 <p id="timerDisplay">00:00:00</p>
-                <button id="saveTimer" onclick="saveToGallery('timer', document.getElementById('timerDisplay').innerText)">Simpan</button>
             </div>
         </div>
         <div id="textcase" class="tool-content">
@@ -84,7 +79,6 @@
                 <button onclick="convertText('lower')">Lowercase</button>
                 <button onclick="convertText('capitalize')">Capitalize</button>
                 <p id="textResult"></p>
-                <button id="saveText" onclick="saveToGallery('textcase', document.getElementById('textResult').innerText)">Simpan</button>
             </div>
         </div>
         <div id="currency" class="tool-content">
@@ -105,7 +99,6 @@
                 <p id="currencyError" class="error"></p>
                 <button onclick="convertCurrency()">Konversi</button>
                 <p id="currencyResult"></p>
-                <button id="saveCurrency" onclick="saveToGallery('currency', document.getElementById('currencyResult').innerText)">Simpan</button>
             </div>
         </div>
         <div id="age-bmi" class="tool-content">
@@ -123,7 +116,6 @@
                 <p id="bmiError" class="error"></p>
                 <button onclick="calculateBMI()">Hitung BMI</button>
                 <p id="bmiResult"></p>
-                <button id="saveAgeBMI" onclick="saveToGallery('age-bmi', document.getElementById('ageResult').innerText + ', ' + document.getElementById('bmiResult').innerText)">Simpan</button>
             </div>
         </div>
         <div id="settings" class="tool-content">
@@ -131,21 +123,8 @@
             <div class="tool-section">
                 <label for="darkModePref">Dark Mode:</label>
                 <input type="checkbox" id="darkModePref">
-                <label for="language">Bahasa:</label>
-                <select id="language">
-                    <option value="id">Indonesia</option>
-                    <option value="en">English</option>
-                </select>
                 <button onclick="saveSettings()">Simpan</button>
             </div>
-        </div>
-        <div id="gallery" class="tool-content">
-            <h2>Galeri</h2>
-            <div class="gallery-content"></div>
-        </div>
-        <div id="history" class="tool-content">
-            <h2>Riwayat</h2>
-            <div id="historyContent"></div>
         </div>
         <div id="about" class="tool-content">
             <h2>Tentang Kami</h2>
