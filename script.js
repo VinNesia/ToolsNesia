@@ -1,4 +1,4 @@
-// Dark/Light Mode Toggle (Diubah agar sesuai latar putih)
+// Dark/Light Mode Toggle
 document.getElementById('modeToggle').addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     document.querySelector('header').classList.toggle('dark-mode');
