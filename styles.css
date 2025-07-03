@@ -1,7 +1,7 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background: #ffffff; /* Latar belakang putih */
-    color: #000000; /* Teks hitam agar terlihat jelas */
+    background: #ffffff;
+    color: #000000;
     margin: 0;
     padding: 0;
     transition: all 0.3s ease;
@@ -10,54 +10,64 @@ body {
 header {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
-    background: #1e90ff; /* Biru tua seperti di screenshot */
+    padding: 10px 15px;
+    background: #1e90ff;
     color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
 }
 
 h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 #modeToggle {
     margin-left: auto;
     padding: 5px 10px;
-    background: #ff9900;
+    background: #ff4500;
     border: none;
     color: #fff;
     cursor: pointer;
+    font-size: 14px;
 }
 
 nav {
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    flex-direction: column; /* Vertikal di default (mobile) */
+    align-items: center;
     padding: 10px;
-    background: #d3d3d3; /* Abu-abu muda untuk navigasi */
+    background: #d3d3d3;
+    border-bottom: 1px solid #ccc;
 }
 
 .nav-btn {
-    padding: 10px 20px;
+    padding: 8px 12px;
     border: none;
-    background: #1e90ff; /* Biru tua */
+    background: #1e90ff;
     color: #fff;
     cursor: pointer;
+    font-size: 12px;
+    border-radius: 5px;
+    width: 100%; /* Penuh lebar di mobile */
+    margin: 5px 0;
     transition: background 0.3s;
 }
 
 .nav-btn:hover {
-    background: #104e8b; /* Biru lebih gelap saat hover */
+    background: #104e8b;
 }
 
 main {
-    padding: 20px;
+    padding: 15px;
+    max-width: 100%;
 }
 
 .tool-content {
@@ -69,45 +79,156 @@ main {
 }
 
 .tool-content h2 {
-    color: #1e90ff; /* Judul biru tua */
+    color: #1e90ff;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.input-group {
+    background: #1e90ff;
+    padding: 15px;
+    border-radius: 5px;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    color: #ffffff;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
 }
 
 input, select, textarea, button {
-    margin: 5px;
+    margin: 5px 0;
     padding: 8px;
-    font-size: 16px;
+    font-size: 14px;
     border: 1px solid #1e90ff;
     background: #ffffff;
     color: #000000;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
 }
 
 button {
-    background: #ff4500; /* Oranye untuk tombol */
+    background: #ff4500;
     border: none;
     color: #fff;
     cursor: pointer;
+    width: auto;
+    display: inline-block;
+    margin-top: 5px;
 }
 
 button:hover {
-    background: #ff6347; /* Oranye lebih terang saat hover */
+    background: #ff6347;
 }
 
 #qrCode {
     margin-top: 10px;
 }
 
-/* Tambahan untuk form seperti di screenshot */
-.tool-content div {
-    background: #1e90ff; /* Biru tua untuk area input */
-    padding: 10px;
-    border-radius: 5px;
-    color: #ffffff;
-}
-
-.tool-content label {
-    color: #ffffff;
-}
-
 .tool-content p {
     color: #ffffff;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Media Query untuk Tablet dan Desktop (min-width: 768px) */
+@media (min-width: 768px) {
+    nav {
+        flex-direction: row; /* Horizontal di desktop */
+        justify-content: center;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .nav-btn {
+        width: auto; /* Tidak penuh lebar di desktop */
+        margin: 0 5px;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    #modeToggle {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+
+    main {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .tool-content h2 {
+        font-size: 22px;
+    }
+
+    .input-group {
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto 20px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        max-width: 300px;
+        display: inline-block;
+        margin: 5px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+/* Media Query untuk Tablet (min-width: 480px dan < 768px) */
+@media (min-width: 480px) and (max-width: 767px) {
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    #modeToggle {
+        font-size: 15px;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    .nav-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    main {
+        padding: 18px;
+    }
+
+    .input-group {
+        padding: 18px;
+    }
+
+    input, select, textarea {
+        font-size: 15px;
+    }
+
+    button {
+        padding: 8px 15px;
+    }
 }
