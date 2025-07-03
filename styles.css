@@ -4,7 +4,7 @@ body {
     color: #000000;
     margin: 0;
     padding: 0;
-    transition: all 0.3s ease;
+    line-height: 1.5;
 }
 
 header {
@@ -16,6 +16,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -27,37 +28,28 @@ header {
 h1 {
     margin: 0;
     font-size: 18px;
-}
-
-#modeToggle {
-    margin-left: auto;
-    padding: 5px 10px;
-    background: #ff4500;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
+    font-weight: 600;
 }
 
 nav {
     display: flex;
-    flex-direction: column; /* Vertikal di default (mobile) */
+    flex-direction: column;
     align-items: center;
     padding: 10px;
-    background: #d3d3d3;
-    border-bottom: 1px solid #ccc;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
 }
 
 .nav-btn {
-    padding: 8px 12px;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
     border: none;
     background: #1e90ff;
     color: #fff;
-    cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
     border-radius: 5px;
-    width: 100%; /* Penuh lebar di mobile */
-    margin: 5px 0;
+    cursor: pointer;
     transition: background 0.3s;
 }
 
@@ -80,57 +72,65 @@ main {
 
 .tool-content h2 {
     color: #1e90ff;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 600;
 }
 
 .input-group {
-    background: #1e90ff;
+    background: #f0f0f0;
     padding: 15px;
-    border-radius: 5px;
-    color: #ffffff;
-    margin-bottom: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .input-group label {
-    color: #ffffff;
+    color: #333;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-size: 14px;
 }
 
-input, select, textarea, button {
-    margin: 5px 0;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #1e90ff;
-    background: #ffffff;
-    color: #000000;
+input, select, textarea {
     width: 100%;
-    box-sizing: border-box;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
 button {
-    background: #ff4500;
+    padding: 10px 15px;
     border: none;
+    background: #ff4500;
     color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
     cursor: pointer;
-    width: auto;
-    display: inline-block;
-    margin-top: 5px;
+    transition: background 0.3s;
 }
 
 button:hover {
     background: #ff6347;
 }
 
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
 #qrCode {
-    margin-top: 10px;
+    margin-top: 15px;
+    text-align: center;
 }
 
 .tool-content p {
-    color: #ffffff;
+    color: #333;
     margin-top: 10px;
     font-size: 14px;
 }
@@ -138,15 +138,16 @@ button:hover {
 /* Media Query untuk Tablet dan Desktop (min-width: 768px) */
 @media (min-width: 768px) {
     nav {
-        flex-direction: row; /* Horizontal di desktop */
+        flex-direction: row;
         justify-content: center;
         gap: 15px;
         padding: 15px;
     }
 
     .nav-btn {
-        width: auto; /* Tidak penuh lebar di desktop */
-        margin: 0 5px;
+        width: auto;
+        padding: 10px 20px;
+        font-size: 16px;
     }
 
     .logo {
@@ -156,11 +157,6 @@ button:hover {
 
     h1 {
         font-size: 24px;
-    }
-
-    #modeToggle {
-        font-size: 16px;
-        padding: 8px 15px;
     }
 
     main {
@@ -176,18 +172,21 @@ button:hover {
     .input-group {
         padding: 20px;
         max-width: 600px;
-        margin: 0 auto 20px;
+        margin: 0 auto 25px;
     }
 
     input, select, textarea {
-        width: 100%;
         max-width: 300px;
         display: inline-block;
-        margin: 5px;
+        margin-right: 10px;
+    }
+
+    .button-group {
+        justify-content: center;
     }
 
     button {
-        padding: 10px 20px;
+        padding: 12px 20px;
         font-size: 16px;
     }
 }
@@ -203,17 +202,13 @@ button:hover {
         font-size: 20px;
     }
 
-    #modeToggle {
-        font-size: 15px;
-    }
-
     nav {
         gap: 10px;
     }
 
     .nav-btn {
         padding: 10px 15px;
-        font-size: 14px;
+        font-size: 15px;
     }
 
     main {
@@ -229,6 +224,6 @@ button:hover {
     }
 
     button {
-        padding: 8px 15px;
+        padding: 10px 15px;
     }
 }
