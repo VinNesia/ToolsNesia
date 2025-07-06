@@ -27,6 +27,7 @@ header {
     padding: 1rem;
     background-color: #4A90E2;
     color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .logo {
@@ -39,22 +40,39 @@ header {
     margin-right: 10px;
 }
 
+.logo h1 {
+    font-size: 1.5rem;
+}
+
 .controls {
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
 
 #categoryFilter, #searchInput {
     padding: 0.5rem;
     border-radius: 5px;
     border: none;
+    font-size: 1rem;
+}
+
+#searchInput {
+    width: 200px;
 }
 
 #themeToggle, #favoritesBtn {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
+    background-color: #9B59B6;
+    color: white;
     cursor: pointer;
+    font-size: 1rem;
+}
+
+#themeToggle:hover, #favoritesBtn:hover {
+    background-color: #7D3C98;
 }
 
 .tools-grid {
@@ -62,6 +80,8 @@ header {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
     padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .tool-card {
@@ -82,6 +102,22 @@ header {
 
 .tool-card h3 {
     color: #4A90E2;
+    margin-bottom: 0.5rem;
+}
+
+.tool-card p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.tool-card a {
+    color: #9B59B6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.tool-card a:hover {
+    text-decoration: underline;
 }
 
 .bookmark-btn {
@@ -89,6 +125,7 @@ header {
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+    float: right;
 }
 
 .pagination {
@@ -105,6 +142,7 @@ header {
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .pagination button:disabled {
@@ -121,9 +159,18 @@ header {
     .controls {
         flex-direction: column;
         width: 100%;
+        align-items: stretch;
     }
 
     #categoryFilter, #searchInput {
         width: 100%;
+    }
+
+    #searchInput {
+        width: 100%;
+    }
+
+    .logo h1 {
+        font-size: 1.2rem;
     }
 }
