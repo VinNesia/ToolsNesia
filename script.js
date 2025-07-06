@@ -15,18 +15,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load tools from tools.json
     fetch('tools.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error('Gagal memuat tools.json');
+            return response.json();
+        })
         .then(data => {
             tools = data;
             filteredTools = tools;
+            if (tools.length === 0) {
+                toolsList.innerHTML = '<p class="no-results">Tidak ada alat AI yang tersedia.</p>';
+                return;
+            }
             populateCategories();
             renderTools();
+        })
+        .catch(error => {
+            toolsList.innerHTML = '<p class="no-results">Error: Gagal memuat data alat AI.</p>';
+            console.error(error);
         });
 
     // Populate category dropdown
     function populateCategories() {
         const categories = [...new Set(tools.map(tool => tool.category))];
-        categories.forEach(category => {
+        if (categories.length === 0) {
+            categoryFilter.innerHTML = '<option value="all">Tidak ada kategori</option>';
+            return;
+        }
+        categories.sort().forEach(category => {
             const option = document.createElement('option');
             option.value = category;
             option.textContent = category;
@@ -37,6 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render tools
     function renderTools() {
         toolsList.innerHTML = '';
+        if (filteredTools.length === 0) {
+            toolsList.innerHTML = '<p class="no-results">Tidak ada alat ditemukan.</p>';
+            updatePagination();
+            return;
+        }
+
         const start = (currentPage - 1) * toolsPerPage;
         const end = start + toolsPerPage;
         const paginatedTools = filteredTools.slice(start, end);
@@ -47,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toolCard.innerHTML = `
                 <h3>${tool.name}</h3>
                 <p>${tool.description}</p>
-                <a href="${tool.url}" target="_blank">Kunjungi</a>
+                <a href="${tool.url}" target="_blank" rel="noopener">Kunjungi</a>
                 <button class="bookmark-btn" data-id="${tool.id}">${favorites.includes(tool.id) ? '★' : '☆'}</button>
             `;
             toolsList.appendChild(toolCard);
@@ -65,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Filter and search
     function applyFilters() {
         const category = categoryFilter.value;
-        const search = searchInput.value.toLowerCase();
+        const search = searchInput.value.toLowerCase().trim();
 
         filteredTools = tools.filter(tool => {
             const matchesCategory = category === 'all' || tool.category === category;
@@ -84,12 +105,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentPage > 1) {
             currentPage--;
             renderTools();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
     nextBtn.addEventListener('click', () => {
         if (currentPage * toolsPerPage < filteredTools.length) {
             currentPage++;
             renderTools();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
 
@@ -126,6 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show favorites
     favoritesBtn.addEventListener('click', () => {
         filteredTools = tools.filter(tool => favorites.includes(tool.id));
+        if (filteredTools.length === 0) {
+            toolsList.innerHTML = '<p class="no-results">Belum ada alat favorit.</p>';
+        }
         currentPage = 1;
         renderTools();
     });
