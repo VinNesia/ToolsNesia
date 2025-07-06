@@ -1,17 +1,24 @@
 [
     {
         "id": "1",
-        "name": "AI Tool 1",
-        "description": "Alat AI untuk analisis data.",
+        "name": "AI Analisis Data",
+        "description": "Alat AI untuk analisis data cepat dan akurat.",
         "category": "Analisis Data",
         "url": "https://example.com/tool1"
     },
     {
         "id": "2",
-        "name": "AI Tool 2",
-        "description": "Alat AI untuk pengeditan gambar.",
+        "name": "AI Editor Gambar",
+        "description": "Edit gambar dengan teknologi AI secara otomatis.",
         "category": "Pengeditan Gambar",
         "url": "https://example.com/tool2"
+    },
+    {
+        "id": "3",
+        "name": "AI Penulis Teks",
+        "description": "Buat konten teks dengan AI dalam hitungan detik.",
+        "category": "Pemrosesan Teks",
+        "url": "https://example.com/tool3"
     }
     // Tambahkan lebih banyak alat sesuai kebutuhan
 ]
