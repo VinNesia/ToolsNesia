@@ -1,24 +1,212 @@
 [
-    {
-        "id": "1",
-        "name": "AI Analisis Data",
-        "description": "Alat AI untuk analisis data cepat dan akurat.",
-        "category": "Analisis Data",
-        "url": "https://example.com/tool1"
-    },
-    {
-        "id": "2",
-        "name": "AI Editor Gambar",
-        "description": "Edit gambar dengan teknologi AI secara otomatis.",
-        "category": "Pengeditan Gambar",
-        "url": "https://example.com/tool2"
-    },
-    {
-        "id": "3",
-        "name": "AI Penulis Teks",
-        "description": "Buat konten teks dengan AI dalam hitungan detik.",
-        "category": "Pemrosesan Teks",
-        "url": "https://example.com/tool3"
-    }
-    // Tambahkan lebih banyak alat sesuai kebutuhan
+  {
+    "id": "1",
+    "name": "Writesonic",
+    "description": "AI writing assistant untuk berbagai kebutuhan konten.",
+    "category": "Writing",
+    "url": "https://writesonic.com"
+  },
+  {
+    "id": "2",
+    "name": "DeepL Translator",
+    "description": "AI translator dengan kualitas tinggi.",
+    "category": "Translation",
+    "url": "https://deepl.com"
+  },
+  {
+    "id": "3",
+    "name": "Pictory",
+    "description": "AI untuk membuat video dari teks dengan mudah.",
+    "category": "Video Generator",
+    "url": "https://pictory.ai"
+  },
+  {
+    "id": "4",
+    "name": "Stable Diffusion",
+    "description": "AI untuk generasi gambar dengan kontrol penuh.",
+    "category": "Image Generator",
+    "url": "https://stability.ai"
+  },
+  {
+    "id": "5",
+    "name": "Notion AI",
+    "description": "Asisten AI untuk catatan & produktivitas.",
+    "category": "Productivity",
+    "url": "https://notion.so"
+  },
+  {
+    "id": "6",
+    "name": "Copy.ai",
+    "description": "AI untuk copywriting dan pemasaran.",
+    "category": "Writing",
+    "url": "https://copy.ai"
+  },
+  {
+    "id": "7",
+    "name": "Jasper AI",
+    "description": "AI untuk penulisan konten marketing profesional.",
+    "category": "Writing",
+    "url": "https://jasper.ai"
+  },
+  {
+    "id": "8",
+    "name": "Descript",
+    "description": "Edit video & audio dengan AI cerdas.",
+    "category": "Video Editing",
+    "url": "https://descript.com"
+  },
+  {
+    "id": "9",
+    "name": "Runway ML",
+    "description": "Platform AI untuk edit video & animasi.",
+    "category": "Video Editing",
+    "url": "https://runwayml.com"
+  },
+  {
+    "id": "10",
+    "name": "Synthesia",
+    "description": "AI untuk membuat video presentasi otomatis.",
+    "category": "Video Generator",
+    "url": "https://synthesia.io"
+  },
+  {
+    "id": "11",
+    "name": "Durable AI",
+    "description": "AI untuk membuat website secara otomatis.",
+    "category": "Website Builder",
+    "url": "https://durable.co"
+  },
+  {
+    "id": "12",
+    "name": "Beautiful.ai",
+    "description": "AI untuk membuat presentasi yang menarik.",
+    "category": "Presentation",
+    "url": "https://beautiful.ai"
+  },
+  {
+    "id": "13",
+    "name": "Looka",
+    "description": "AI untuk membuat logo & branding secara instan.",
+    "category": "Logo Generator",
+    "url": "https://looka.com"
+  },
+  {
+    "id": "14",
+    "name": "Logo AI",
+    "description": "AI untuk desain logo profesional otomatis.",
+    "category": "Logo Generator",
+    "url": "https://logoai.com"
+  },
+  {
+    "id": "15",
+    "name": "Replika",
+    "description": "AI chatbot untuk teman virtual pribadi.",
+    "category": "Chatbot",
+    "url": "https://replika.ai"
+  },
+  {
+    "id": "16",
+    "name": "You.com",
+    "description": "AI search engine dengan chatbot & tools produktivitas.",
+    "category": "Search Engine",
+    "url": "https://you.com"
+  },
+  {
+    "id": "17",
+    "name": "Perplexity AI",
+    "description": "AI-powered search engine dengan jawaban instan.",
+    "category": "Search Engine",
+    "url": "https://perplexity.ai"
+  },
+  {
+    "id": "18",
+    "name": "AI Dungeon",
+    "description": "Game petualangan berbasis AI.",
+    "category": "Gaming",
+    "url": "https://aidungeon.io"
+  },
+  {
+    "id": "19",
+    "name": "Magician for Figma",
+    "description": "AI tools untuk desain di Figma.",
+    "category": "Design Tools",
+    "url": "https://magician.design"
+  },
+  {
+    "id": "20",
+    "name": "Veed.io",
+    "description": "AI untuk edit video otomatis & subtitle.",
+    "category": "Video Editing",
+    "url": "https://veed.io"
+  },
+  {
+    "id": "21",
+    "name": "Cleanup Pictures",
+    "description": "AI untuk menghapus objek dari foto secara instan.",
+    "category": "Image Editing",
+    "url": "https://cleanup.pictures"
+  },
+  {
+    "id": "22",
+    "name": "Playground AI",
+    "description": "AI image generator dengan kontrol penuh.",
+    "category": "Image Generator",
+    "url": "https://playgroundai.com"
+  },
+  {
+    "id": "23",
+    "name": "Grammarly",
+    "description": "AI untuk memeriksa grammar & gaya bahasa.",
+    "category": "Writing",
+    "url": "https://grammarly.com"
+  },
+  {
+    "id": "24",
+    "name": "QuillBot",
+    "description": "AI untuk parafrase & memperbaiki teks.",
+    "category": "Writing",
+    "url": "https://quillbot.com"
+  },
+  {
+    "id": "25",
+    "name": "Mubert",
+    "description": "AI untuk menghasilkan musik bebas royalti.",
+    "category": "Music Generator",
+    "url": "https://mubert.com"
+  },
+  {
+    "id": "26",
+    "name": "Beatoven.ai",
+    "description": "AI generator musik untuk konten kreator.",
+    "category": "Music Generator",
+    "url": "https://beatoven.ai"
+  },
+  {
+    "id": "27",
+    "name": "Bing AI",
+    "description": "AI Chatbot dari Microsoft Bing.",
+    "category": "Chatbot",
+    "url": "https://bing.com/chat"
+  },
+  {
+    "id": "28",
+    "name": "Claude AI",
+    "description": "AI Chatbot dari Anthropic, alternatif ChatGPT.",
+    "category": "Chatbot",
+    "url": "https://claude.ai"
+  },
+  {
+    "id": "29",
+    "name": "Otter.ai",
+    "description": "AI untuk transkripsi percakapan otomatis.",
+    "category": "Speech to Text",
+    "url": "https://otter.ai"
+  },
+  {
+    "id": "30",
+    "name": "ElevenLabs",
+    "description": "AI untuk sintesis suara & text-to-speech realistis.",
+    "category": "Voice Generator",
+    "url": "https://elevenlabs.io"
+  }
 ]
