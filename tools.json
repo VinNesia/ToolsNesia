@@ -1,0 +1,17 @@
+[
+    {
+        "id": "1",
+        "name": "AI Tool 1",
+        "description": "Alat AI untuk analisis data.",
+        "category": "Analisis Data",
+        "url": "https://example.com/tool1"
+    },
+    {
+        "id": "2",
+        "name": "AI Tool 2",
+        "description": "Alat AI untuk pengeditan gambar.",
+        "category": "Pengeditan Gambar",
+        "url": "https://example.com/tool2"
+    }
+    // Tambahkan lebih banyak alat sesuai kebutuhan
+]
